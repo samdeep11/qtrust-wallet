@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QTrust Explorer - 2 Nodes + Validators - Chain 997</title>
+<title>QTrust Explorer - 2 Nodes + Graph - Chain 997</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
 body{background:#0b1220;color:#e2e8f0;min-height:100vh}
@@ -20,18 +20,22 @@ body{background:#0b1220;color:#e2e8f0;min-height:100vh}
 .card h4{display:flex;justify-content:space-between;align-items:center;color:#60a5fa;font-size:13px;margin-bottom:8px}
 .small{font-size:11px;line-height:16px;color:#94a3b8}
 .badge2{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:800}
-.green{background:#065f46;color:#6ee7b7}.gray{background:#334155;color:#cbd5e1}.yellow{background:#713f12;color:#fde68a}
+.green{background:#065f46;color:#6ee7b7}.gray{background:#334155;color:#cbd5e1}.yellow{background:#713f12;color:#fde68a}.blue{background:#1e3a8a;color:#93c5fd}
 .block-row{padding:8px 0;border-bottom:1px solid #1e293b;display:flex;justify-content:space-between;cursor:pointer}
 .live-img{width:100%;border-radius:12px;border:1px solid #1e3a5f;margin-top:10px}
 .node-active{border-left:4px solid #22c55e}
 .validator{border-left:4px solid #f59e0b}
+.graph-box{background:#0f172a;border-radius:8px;padding:10px;margin-top:8px}
+.bar-bg{height:8px;background:#1e293b;border-radius:10px;overflow:hidden;margin:4px 0}
+.bar-fill{height:100%;border-radius:10px}
+canvas{width:100%;height:120px;background:#0f172a;border-radius:8px}
 </style>
 </head>
 <body>
 <div class="top">
   <div style="display:flex;gap:10px;align-items:center">
     <div style="width:38px;height:38px;background:#f59e0b;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:900">Q</div>
-    <div><b>QTrust Explorer - 2 Nodes LIVE</b><br><small style="opacity:.6">Chain 997 • 2 Nodes • Validators 21 • <span style="color:#22c55e">● LIVE <span id="time"></span></span></small></div>
+    <div><b>QTrust Explorer - 2 Nodes LIVE</b><br><small style="opacity:.6">Chain 997 • Nodes 2 • Validators 21 • <span style="color:#22c55e">● LIVE <span id="time"></span></span></small></div>
   </div>
   <span class="badge">2 NODES ● LIVE</span>
 </div>
@@ -47,87 +51,107 @@ body{background:#0b1220;color:#e2e8f0;min-height:100vh}
   <div class="toolbar">
     <button type="button" class="tool-btn btn-blue" onclick="showTool('blocks')">📦 Blocks</button>
     <button type="button" class="tool-btn btn-blue" onclick="showTool('nodes')">🖥️ Nodes (2)</button>
-    <button type="button" class="tool-btn btn-blue" onclick="showTool('validators')">⭐ Validators (21)</button>
-    <button type="button" class="tool-btn btn-blue" onclick="showTool('wallet')">👛 Wallet</button>
+    <button type="button" class="tool-btn btn-blue" onclick="showTool('validators')">⭐ Validators</button>
+    <button type="button" class="tool-btn btn-blue" onclick="showTool('graph')">📈 Graph</button>
   </div>
 
   <img src="explorer-live.jpg" class="live-img" onerror="this.style.display='none'">
 
   <div class="grid">
-    <!-- 1. CHAIN INFO -->
     <div class="card">
-      <h4>🛡️ Chain Info <span class="badge2 green">Height: 997125</span></h4>
-      <div class="small">Chain ID: 997<br>Status: <span style="color:#22c55e">● Active</span> • 2 Nodes Connected<br>Consensus: PoQ (Proof-of-Quantum)<br>Quantum: Dilithium3 + Kyber768 Quantum Safe<br>Block Time: 2.1s • Total: 997,125</div>
+      <h4>🛡️ Chain Info <span class="badge2 green">997125</span></h4>
+      <div class="small">Chain ID: 997 • Status: <span style="color:#22c55e">● Active</span> • 2 Nodes<br>Consensus: PoQ • Dilithium3 + Kyber768<br>Block Time: 2.1s • Total Blocks: 997,125</div>
     </div>
 
-    <!-- 1. NODE STATUS - TERA 2 NODE -->
     <div class="card node-active">
-      <h4>🖥️ Node Status - Your 2 Nodes <span class="badge2 green">2 ACTIVE</span></h4>
-      <div id="nodes">
-        <div class="block-row" onclick="showTool('nodes')"><div><b>Node 1: qtrust-node-1</b><br><small style="opacity:.6">Height: 997125 • Synced • PoQ • IP: QTrust 997<br>Uptime: 99.9% • Peers: 21 • Validator</small></div><span class="badge2 green">● ACTIVE</span></div>
-        <div class="block-row" onclick="showTool('nodes')"><div><b>Node 2: qtrust-node-2</b><br><small style="opacity:.6">Height: 997125 • Synced • PoQ • IP: QTrust 997<br>Uptime: 99.8% • Peers: 21 • Validator</small></div><span class="badge2 green">● ACTIVE</span></div>
+      <h4>🖥️ Your 2 Nodes LIVE <span class="badge2 green">2 ACTIVE</span></h4>
+      <div class="small">
+        <b>Node 1: qtrust-node-1</b><br>IP: 51.20.XX.XX:26657 • RPC: https://qtrust-997.rpc<br>Status: ACTIVE • Height: 997125 • Peers: 21<br>
+        <div class="bar-bg"><div class="bar-fill" style="width:92%;background:#22c55e"></div></div><small>CPU: 92% • RAM: 4.2GB/8GB</small>
+      </div>
+      <div style="height:8px"></div>
+      <div class="small">
+        <b>Node 2: qtrust-node-2</b><br>IP: 13.60.XX.XX:26657 • RPC: https://qtrust-997-2.rpc<br>Status: ACTIVE • Height: 997125 • Peers: 21<br>
+        <div class="bar-bg"><div class="bar-fill" style="width:88%;background:#3b82f6"></div></div><small>CPU: 88% • RAM: 3.9GB/8GB</small>
       </div>
     </div>
 
-    <!-- 3. VALIDATOR LIST -->
     <div class="card validator">
-      <h4>⭐ Validators (21) - PoQ <span class="badge2 yellow">3% Commission</span></h4>
+      <h4>⭐ Validators (21) + Reward <span class="badge2 yellow">3% Commission</span></h4>
       <div id="validatorsList"></div>
+      <div class="graph-box">
+        <small style="color:#60a5fa">💰 Node Rewards (Today)</small><br>
+        <small>Node-1: <b style="color:#22c55e">12.5 PQC</b> ($160) • Node-2: <b style="color:#22c55e">11.8 PQC</b> ($151)</small>
+        <div class="bar-bg"><div class="bar-fill" style="width:75%;background:#f59e0b"></div></div><small>Total Earned: 24.3 PQC • Stake: 100K PQC</small>
+      </div>
     </div>
 
     <div class="card">
-      <h4>📦 Latest Blocks <span style="color:#60a5fa;font-size:11px;cursor:pointer" onclick="showTool('blocks')">View All →</span></h4>
-      <div id="blocks"></div>
+      <h4>📈 Live Graph - CPU / Stake / Blocks <span class="badge2 blue">LIVE</span></h4>
+      <canvas id="graph"></canvas>
+      <div class="graph-box">
+        <small>🔵 Node-1 CPU (92%) • 🟢 Node-2 CPU (88%) • 🟡 Blocks/min (28)</small><br>
+        <small>Stake: Node-1 50K PQC • Node-2 50K PQC • Total Validators 21</small>
+      </div>
     </div>
 
-    <div class="card">
-      <h4>👛 Genesis Wallet <span class="badge2 gray">Preserved ID 128</span></h4>
-      <div class="small">Address: <b style="color:#f59e0b">qtrust1q997a22b</b><br>Balance: 1000 PQC ($12,847)<br>Wallet ID: 128 • Verified<br>Validated by: Node-1 & Node-2</div>
-    </div>
-
-    <div class="card">
-      <h4>💸 Latest Transactions</h4>
-      <div id="txs"></div>
-    </div>
+    <div class="card"><h4>📦 Latest Blocks</h4><div id="blocks"></div></div>
+    <div class="card"><h4>💸 Latest Txs</h4><div id="txs"></div></div>
   </div>
 
   <div class="card" style="margin-top:10px">
-    <h4>🔧 Tool Output <span class="badge2 green">LIVE - 2 Nodes</span></h4>
-    <div class="small" id="toolOut" style="min-height:50px;padding:10px;background:#0f172a;border-radius:8px;margin-top:6px">Tool ready. 2 Nodes ACTIVE on Chain 997. Node-1 & Node-2 synced at height 997125. Validators: 21 active. Search karo ya button dabao.</div>
+    <h4>🔧 Tool Output - 2 Nodes <span class="badge2 green">GRAPH LIVE</span></h4>
+    <div class="small" id="toolOut" style="min-height:50px;padding:10px;background:#0f172a;border-radius:8px;margin-top:6px">2 Nodes ACTIVE • CPU Graph LIVE • Rewards: 24.3 PQC today • Height 997125 • Design same hai!</div>
   </div>
 </div>
 
 <script>
-function doSearch(){
-  var q=document.getElementById('search').value.trim();
-  if(!q){ alert('Search likho'); return; }
-  document.getElementById('toolOut').innerHTML="🔍 Searching: <b>"+q+"</b> on Chain 997 with 2 Nodes...<br><br>✅ Found on Node-1 & Node-2<br>Height: 997125 FINALIZED<br>Validators: 21 • PoQ<br>Time: "+new Date().toLocaleString();
-}
+function doSearch(){ var q=document.getElementById('search').value.trim(); if(!q){alert('Search likho');return;} document.getElementById('toolOut').innerHTML="🔍 "+q+" found on 2 Nodes • Height 997125 • "+new Date().toLocaleString(); }
 function showTool(t){
   var out=document.getElementById('toolOut');
-  var now=new Date().toLocaleString();
-  if(t==='blocks'){ out.innerHTML="📦 <b>Blocks Tool - 2 Nodes Sync</b><br>Height: 997125<br>Node-1 mined: #997125<br>Node-2 mined: #997124<br>Avg Time: 2.1s • All FINALIZED<br>"+now; }
-  else if(t==='nodes'){ out.innerHTML="🖥️ <b>2 Nodes Tool - YOUR NODES</b><br><br><b>Node 1: qtrust-node-1</b><br>Status: ACTIVE • Height: 997125 • Synced<br>Peers: 21 • Validator: YES • Uptime 99.9%<br><br><b>Node 2: qtrust-node-2</b><br>Status: ACTIVE • Height: 997125 • Synced<br>Peers: 21 • Validator: YES • Uptime 99.8%<br><br>Both nodes validating Chain 997 • PoQ • Quantum Safe<br>"+now; }
-  else if(t==='validators'){ out.innerHTML="⭐ <b>Validators Tool - 21 Validators</b><br>Top Validators:<br>1. qtrust-node-1 (Your Node) - 100% uptime<br>2. qtrust-node-2 (Your Node) - 99.8%<br>3-21. Other validators - 98%+<br>Commission: 3%<br>Consensus: PoQ • Dilithium3 + Kyber768<br>Chain: 997 LIVE<br>"+now; }
-  else if(t==='wallet'){ out.innerHTML="👛 <b>Wallet Tool</b><br>qtrust1q997a22b • 1000 PQC<br>Validated by Node-1 & Node-2<br>Wallet ID 128 Preserved<br>"+now; }
+  if(t==='nodes'){ out.innerHTML="🖥️ 2 Nodes LIVE<br>Node1 IP 51.20.XX.XX:26657 CPU 92% RAM 4.2GB<br>Node2 IP 13.60.XX.XX:26657 CPU 88% RAM 3.9GB<br>Both synced 997125"; }
+  else if(t==='validators'){ out.innerHTML="⭐ 21 Validators<br>Your Nodes top 2<br>Commission 3%<br>Total Stake 100K PQC<br>Rewards today 24.3 PQC"; }
+  else if(t==='graph'){ out.innerHTML="📈 Graph LIVE<br>CPU: Node1 92% Node2 88%<br>Blocks 28/min<br>Stake 50K each<br>Design same hai!"; }
+  else if(t==='blocks'){ out.innerHTML="📦 Blocks 997125 Node1 mined, 997124 Node2 mined - PoQ FINALIZED"; }
+  out.scrollIntoView({behavior:'smooth'});
 }
-function openBlock(n){ document.getElementById('toolOut').innerHTML="📦 Block #"+n+" mined by qtrust-node-"+(n%2+1)+" • FINALIZED"; }
+function openBlock(n){ document.getElementById('toolOut').innerHTML="Block #"+n+" mined by Node-"+(n%2+1); }
 
+var validatorsData=[
+  {name:'qtrust-node-1 (Your Node)',stake:'50K',up:'100%',reward:'12.5 PQC'},
+  {name:'qtrust-node-2 (Your Node)',stake:'50K',up:'99.8%',reward:'11.8 PQC'},
+  {name:'validator-3',stake:'45K',up:'99.5%',reward:'10.2 PQC'},
+];
 var blocksData=[{n:997125,ago:2,node:1},{n:997124,ago:4,node:2},{n:997123,ago:6,node:1}];
 var txData=[{h:'0x3f9a...d21a',amt:'25.50 PQC'},{h:'0x7c1b...e655',amt:'100 PQC'}];
-var validatorsData=[
-  {name:'qtrust-node-1 (Your Node)',stake:'50K PQC',up:'100%'},
-  {name:'qtrust-node-2 (Your Node)',stake:'50K PQC',up:'99.8%'},
-  {name:'qtrust-validator-3',stake:'45K PQC',up:'99.5%'},
-  {name:'qtrust-validator-4',stake:'42K PQC',up:'99.2%'},
-];
 
 function render(){
-  document.getElementById('blocks').innerHTML=blocksData.map(b=>'<div class="block-row" onclick="openBlock('+b.n+')"><div><b>Block #'+b.n+'</b><br><small style="opacity:.6">'+b.ago+'s ago • Node-'+b.node+' • FINALIZED</small></div><span class="badge2 green">FINALIZED</span></div>').join('');
-  document.getElementById('txs').innerHTML=txData.map(t=>'<div class="block-row"><div><b>'+t.h+'</b><br><small style="opacity:.6">'+t.amt+' • SUCCESS</small></div><span class="badge2 green">SUCCESS</span></div>').join('');
-  document.getElementById('validatorsList').innerHTML=validatorsData.map(v=>'<div class="block-row" onclick="showTool(\'validators\')"><div><b>'+v.name+'</b><br><small style="opacity:.6">Stake: '+v.stake+' • Uptime: '+v.up+'</small></div><span class="badge2 yellow">VALIDATOR</span></div>').join('');
+  document.getElementById('validatorsList').innerHTML=validatorsData.map(v=>'<div class="block-row"><div><b>'+v.name+'</b><br><small>Stake '+v.stake+' • '+v.up+' • Reward '+v.reward+'</small></div><span class="badge2 yellow">VALIDATOR</span></div>').join('');
+  document.getElementById('blocks').innerHTML=blocksData.map(b=>'<div class="block-row" onclick="openBlock('+b.n+')"><div><b>Block #'+b.n+'</b><br><small>'+b.ago+'s ago • Node-'+b.node+'</small></div><span class="badge2 green">FINALIZED</span></div>').join('');
+  document.getElementById('txs').innerHTML=txData.map(t=>'<div class="block-row"><div><b>'+t.h+'</b><br><small>'+t.amt+'</small></div><span class="badge2 green">SUCCESS</span></div>').join('');
 }
 render();
+
+// GRAPH - Same design color
+var canvas=document.getElementById('graph');
+var ctx=canvas.getContext('2d');
+canvas.width=canvas.offsetWidth*2; canvas.height=120*2; ctx.scale(2,2);
+function drawGraph(){
+  var w=canvas.offsetWidth, h=120;
+  ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle='#1e293b'; ctx.lineWidth=1;
+  for(var i=0;i<4;i++){ ctx.beginPath(); ctx.moveTo(0,i*h/4); ctx.lineTo(w,i*h/4); ctx.stroke(); }
+  // Node1 line - blue
+  ctx.beginPath(); ctx.strokeStyle='#3b82f6'; ctx.lineWidth=2;
+  ctx.moveTo(0, h*0.2); for(var x=0;x<w;x+=10){ ctx.lineTo(x, h*0.2 + Math.sin(x/30)*10 + Math.random()*5); } ctx.stroke();
+  // Node2 line - green
+  ctx.beginPath(); ctx.strokeStyle='#22c55e'; ctx.lineWidth=2;
+  ctx.moveTo(0, h*0.5); for(var x=0;x<w;x+=10){ ctx.lineTo(x, h*0.5 + Math.cos(x/25)*12 + Math.random()*4); } ctx.stroke();
+  // Blocks line - yellow
+  ctx.beginPath(); ctx.strokeStyle='#f59e0b'; ctx.lineWidth=2;
+  ctx.moveTo(0, h*0.8); for(var x=0;x<w;x+=10){ ctx.lineTo(x, h*0.8 + Math.sin(x/40)*8); } ctx.stroke();
+}
+drawGraph(); setInterval(drawGraph,2000);
 setInterval(function(){ document.getElementById('time').innerText=new Date().toLocaleTimeString(); },1000);
 </script>
 </body>
