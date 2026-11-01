@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>QTrust - Final Fixed + PQC + Explorer</title>
+<title>QTrust - Final Fixed + PQC + Live Image Explorer</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
 html,body{width:100%;height:100%;overflow-x:hidden;background:#4a76f7;margin:0}
@@ -76,20 +76,15 @@ html,body{width:100%;height:100%;overflow-x:hidden;background:#4a76f7;margin:0}
     <div class="btns"><button class="btn-half btn-send" onclick="App.send()">✈ Send Coin</button><button class="btn-half btn-rec" onclick="App.receive()">⬇ Receive Coin</button><button class="btn-half" style="background:rgba(255,255,255,.15);color:#fff" onclick="App.buy()">💳 Buy</button><button class="btn-half" style="background:rgba(255,255,255,.15);color:#fff" onclick="App.swap()">🔄 Swap</button></div>
     <div style="margin-top:12px;background:rgba(255,255,255,.1);border-radius:12px;padding:10px;font-size:9px"><div id="widDash">Wallet ID 128: ... Old Preserved</div><div id="pubDash" style="margin-top:4px">Public: ... QTrust Mainnet 997</div></div>
   </div>
-
   <div class="card"><div style="display:flex;justify-content:space-between"><h3>Your Assets - QTrust Mainnet 997</h3><button onclick="App.addToken()" style="border:none;background:#f3f4f6;padding:6px 10px;border-radius:8px;font-size:11px">+ Add Token</button></div>
     <div class="asset" style="background:#fffbeb;border:1px solid #fcd34d;padding:10px;border-radius:12px;margin-top:10px">
-      <div class="asset-left">
-        <div class="asset-ico" style="background:#fff;border:1px solid #f59e0b"><img src="pqc-logo.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.src='https://via.placeholder.com/44/f59e0b/fff?text=PQC'"></div>
-        <div><div style="font-weight:700">PQC <span style="background:#f59e0b;color:#fff;font-size:8px;padding:2px 6px;border-radius:10px"></span></div><small>PQC • QTrust 997 • Dilithium3 + Kyber768</small></div>
-      </div>
+      <div class="asset-left"><div class="asset-ico" style="background:#fff;border:1px solid #f59e0b"><img src="pqc-logo.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.src='https://via.placeholder.com/44/f59e0b/fff?text=PQC'"></div><div><div style="font-weight:700">PQC</div><small>PQC • QTrust 997 • Dilithium3 + Kyber768</small></div></div>
       <div style="text-align:right"><b>1,000 PQC</b><br><small style="color:#16a34a">$12,847.32 • Quantum Safe</small></div>
     </div>
     <div class="asset"><div class="asset-left"><div class="asset-ico btc">₿</div><div><div style="font-weight:700">Bitcoin</div><small>BTC • 0.1021</small></div></div><div style="text-align:right"><b>$8,124.56</b><br><small style="color:#16a34a">+2.14%</small></div></div>
     <div class="asset"><div class="asset-left"><div class="asset-ico eth">♦</div><div><div style="font-weight:700">Ethereum</div><small>ETH • 1.39</small></div></div><div style="text-align:right"><b>$3,210.40</b><br><small style="color:#16a34a">+5.82%</small></div></div>
     <div class="asset"><div class="asset-left"><div class="asset-ico usdc">S</div><div><div style="font-weight:700">USDC</div><small>USDC • 1512.36</small></div></div><div style="text-align:right"><b>$1,512.36</b><br><small>0.00%</small></div></div>
   </div>
-
   <div class="card"><h3>🛡️ Security Center - QTrust Chain 997</h3><div style="margin-top:10px;font-size:13px"><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ QTrust Mainnet - Chain ID 997</span><small style="color:#16a34a">Active</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ Public: qtrust1q997... Protected</span><small style="color:#16a34a">Verified</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ Wallet ID 128 - Old Preserved</span><small style="color:#16a34a">Verified</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>⚠️ Backup & Security</span><small style="color:#e53935;cursor:pointer" onclick="App.backup()">Verify ›</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ PQC Dilithium3 + Kyber768 - QTrust Safe</span><small style="color:#16a34a">Quantum Safe</small></div></div></div>
   <div class="card"><div style="display:flex;justify-content:space-between"><h3>Markets - Live</h3><span style="color:#4a6cf7;font-size:12px" onclick="App.nav('Markets')">See All ›</span></div><div id="coinMini">Loading...</div></div>
 </div>
@@ -152,41 +147,49 @@ const App={
   copyAddr(){ let text=FINAL_QTRUST_ADDR; if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(()=>alert('Copied QTrust Address: '+text)).catch(()=>{fallback(text)}); } else{ fallback(text); } function fallback(t){ let ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); alert('Copied: '+t);}catch(e){prompt('Copy manually:',t);} document.body.removeChild(ta); } },
   logout(){ if(confirm('Logout? QTrust 997 data safe rahega!')){ this.showLogin(); } },
   backup(){ let d=this.ensure(); let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); el.innerHTML=`<h3>🔐 Backup & Security - QTrust Mainnet 997</h3><div class="small">Chain: QTrust Mainnet | ID: 997 | Symbol: PQC Native</div><div class="small">ID: ${d.qid}</div><div class="small">Wallet ID 128: ${d.wid}</div><div class="small">Public QTrust: ${d.addr}</div><div class="small">Password 128: ${d.pwd}</div><div class="small">Private Key: ${d.pk}</div><div class="small">Seed: ${d.seed}</div>`; },
-
   explorer(){
     let el=document.getElementById('setDetail'); el.style.display='block';
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); 
     document.getElementById('pSettings').classList.add('on');
+    let now = new Date().toLocaleString();
+    let liveSec = Math.floor(Math.random()*10)+1;
     el.innerHTML=`
-    <h3>🔍 QTrust Explorer - Chain 997 <span style="color:#22c55e">● LIVE</span></h3>
-    <div class="small" style="background:#0b1220;color:#e2e8f0;padding:14px;border-radius:12px;line-height:16px;font-size:11px">
-      <div style="display:flex;justify-content:space-between;align-items:center;background:#162032;padding:10px;border-radius:10px;border:1px solid #1e3a5f">
-        <div><b style="color:#f59e0b">QTrust Mainnet</b><br>Chain ID: 997 | Symbol: PQC</div>
-        <span style="background:#22c55e;color:#000;padding:4px 10px;border-radius:20px;font-weight:800;font-size:10px">LIVE</span>
+    <h3>🔍 QTrust Explorer - Chain 997 <span style="color:#22c55e">● LIVE • ${new Date().toLocaleTimeString()}</span></h3>
+    <div style="background:#0b1220;border-radius:14px;padding:10px;border:1px solid #1e3a5f">
+      <div style="background:linear-gradient(135deg,#1e3a8a,#0f172a);border-radius:12px;padding:12px;color:#fff;border:1px solid #2a5cf0">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:36px;height:36px;background:#f59e0b;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#000">Q</div><div><b>QTrust Explorer</b><br><small style="opacity:.7">Chain 997 • PQC Native</small></div></div>
+          <span style="background:#22c55e;color:#000;padding:5px 12px;border-radius:20px;font-weight:900;font-size:11px">● LIVE</span>
+        </div>
+        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:10px">
+          <div style="background:rgba(255,255,255,.1);padding:8px;border-radius:8px">Height: <b>997125</b><br>Avg: 12.1s<br>Status: <span style="color:#22c55e">FINALIZED</span></div>
+          <div style="background:rgba(255,255,255,.1);padding:8px;border-radius:8px">Symbol: PQC<br>Supply: 1B<br>Validators: 21</div>
+        </div>
       </div>
-      <div style="margin-top:10px;background:#162032;padding:10px;border-radius:10px;border:1px solid #1e3a5f">
+      <div style="margin-top:10px;background:#162032;padding:10px;border-radius:10px;border:1px solid #1e3a5f;color:#e2e8f0;font-size:11px;line-height:16px">
         <b style="color:#60a5fa">Genesis Wallet</b><br>
-        qtrust1q997a22b...<br>
-        Balance: <b>1000 PQC ($12,847)</b><br>
-        Wallet ID 128 Preserved • Verified • Genesis
+        Addr: qtrust1q997a22b...830f<br>Balance: <b>1000 PQC ($12,847)</b><br>Wallet ID 128 Preserved • <span style="color:#22c55e">Verified</span>
       </div>
-      <div style="margin-top:10px;background:#162032;padding:10px;border-radius:10px;border:1px solid #1e3a5f">
-        <b style="color:#60a5fa">Latest Blocks</b><br>
-        Block #997125 <span style="color:#22c55e">FINALIZED</span> - 2s ago - Txs:14 - Size:2.14KB<br>
-        Block #997124 <span style="color:#22c55e">FINALIZED</span> - 12s ago - Txs:9<br>
-        Block #997123 <span style="color:#22c55e">FINALIZED</span> - 24s ago - Txs:11<br>
-        Block #997122 <span style="color:#22c55e">FINALIZED</span> - 36s ago - Txs:7
+      <div style="margin-top:8px;background:#162032;padding:10px;border-radius:10px;border:1px solid #1e3a5f;color:#e2e8f0;font-size:10px;line-height:15px">
+        <b style="color:#f59e0b">Latest Blocks • LIVE</b><br>
+        Block #997125 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:6px">FINAL</span> - ${liveSec}s ago - Txs:14 - 2.14KB<br>
+        Block #997124 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:6px">FINAL</span> - ${liveSec+10}s ago - Txs:9<br>
+        Block #997123 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:6px">FINAL</span> - ${liveSec+22}s ago - Txs:11<br>
+        Block #997122 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:6px">FINAL</span> - ${liveSec+34}s ago - Txs:7
       </div>
-      <div style="margin-top:10px;background:#162032;padding:10px;border-radius:10px;border:1px solid #1e3a5f">
-        <b style="color:#60a5fa">Latest Transactions</b><br>
-        0x8f2a...9c4d <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:8px">SUCCESS</span> - 25.50 PQC<br>
-        0x7e11...ab62 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:8px">SUCCESS</span> - 100.00 PQC<br>
-        0x4bd9...1f77 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:8px">SUCCESS</span> - 5.00 PQC
+      <div style="margin-top:8px;background:#162032;padding:10px;border-radius:10px;border:1px solid #1e3a5f;color:#e2e8f0;font-size:10px;line-height:15px">
+        <b style="color:#f59e0b">Latest Transactions • LIVE</b><br>
+        0x8f2a...9c4d <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:6px">SUCCESS</span> 25.50 PQC - ${liveSec}s ago<br>
+        0x7e11...ab62 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:6px">SUCCESS</span> 100.00 PQC<br>
+        0x4bd9...1f77 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:6px">SUCCESS</span> 5.00 PQC
       </div>
-      <div style="margin-top:8px;text-align:center;font-size:9px;opacity:.5">Block Height: 997125 • Avg Time: 12.1s • Updated: 2024-06-11 14:32 UTC</div>
+      <div style="margin-top:8px;display:flex;gap:6px">
+        <a href="https://samdeep11.github.io/qtrust-wallet/" target="_blank" style="flex:1;text-align:center;background:#f59e0b;color:#000;padding:11px;border-radius:10px;font-weight:900;text-decoration:none;font-size:12px">🔗 Open Explorer</a>
+        <button onclick="App.explorer()" style="flex:1;background:#22c55e;color:#000;border:none;padding:11px;border-radius:10px;font-weight:900;font-size:12px">↻ Refresh LIVE</button>
+      </div>
+      <div style="margin-top:6px;text-align:center;font-size:9px;color:#64748b">Updated: ${now} • Chain 997 • Live Image Mode</div>
     </div>`;
   },
-
   setLang(){ let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); el.innerHTML='<h3>🌐 Language</h3><div class="small">Language: English - QTrust 997 Working</div>'; },
   setCurr(){ let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); el.innerHTML='<h3>💲 Currencies</h3><div class="small">Currency: PQC / USD - QTrust Mainnet 997 Working</div>'; },
   setNotif(){ if(Notification) Notification.requestPermission(); let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); el.innerHTML='<h3>🔔 Notification</h3><div class="small"><b>QTrust Mainnet 997 Notifications ON</b> - Working</div>'; },
