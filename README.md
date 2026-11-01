@@ -3,8 +3,8 @@
 ![QTrust App](screenshot.jpg)
 
 ### 🔐 Live Demo
-https://samdeep11.github.io/Qtrust-wallet/
 
+https://samdeep11.github.io/qtrust-wallet/
 ### Features
 - ML-DSA87 Post Quantum Security
 - Installable as App (PWA)
