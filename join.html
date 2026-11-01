@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QTrust Chain 997 - Run Node | LIVE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter}
+body{background:#0b1220;color:#e2e8f0;min-height:100vh;padding:20px}
+.nav{display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto 30px;padding:15px 20px;background:#131d2f;border:1px solid #1e2d4a;border-radius:12px}
+.logo{color:#f59e0b;font-weight:900;font-size:22px}
+.live{color:#22c55e;font-size:12px;background:#22c55e22;padding:4px 10px;border-radius:20px;border:1px solid #22c55e}
+.container{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:20px}
+@media(max-width:800px){.container{grid-template-columns:1fr}}
+.card{background:#131d2f;border:1px solid #1e2d4a;border-radius:16px;padding:28px}
+h2{color:white;margin-bottom:12px}
+h3{color:#f59e0b;margin:20px 0 10px;font-size:16px}
+code{background:#080e1c;border:1px solid #1e2d4a;padding:14px;display:block;border-radius:10px;margin:10px 0;color:#22c55e;font-size:13px;overflow-x:auto;white-space:pre-wrap}
+.btn{background:#f59e0b;color:#000;padding:14px 20px;border-radius:10px;font-weight:800;border:0;cursor:pointer;width:100%;font-size:14px;transition:0.2s}
+.btn:hover{background:#fbbf24;transform:translateY(-1px)}
+.btn2{background:transparent;color:#f59e0b;border:1px solid #f59e0b}
+.stat{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1e2d4a22}
+.stat b{color:white}
+a{color:#f59e0b;text-decoration:none}
+.badge{background:#f59e0b22;color:#f59e0b;padding:2px 8px;border-radius:6px;font-size:11px;border:1px solid #f59e0b44}
+</style>
+</head>
+<body>
+
+<div class="nav">
+<div class="logo">QTRUST <span style="color:white">997</span></div>
+<div><span class="live">● 2 NODES LIVE</span> <a href="explorer.html" style="margin-left:12px">Explorer →</a></div>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>🛡️ Become Validator - QTrust Chain 997</h2>
+<p style="opacity:0.7;line-height:1.6">QTrust is Quantum Safe Blockchain - Dilithium3 + Kyber768 + PoQ Consensus. Chain 997 is LIVE with 2 Founder Nodes. Join now and start mining PQC.</p>
+
+<h3>⚡ 1-Command Installer</h3>
+<code id="cmd">curl -s https://samdeep11.github.io/qtrust-wallet/install-997.sh | bash</code>
+<button class="btn" onclick="copyCmd()">📋 COPY & RUN ON YOUR SERVER</button>
+<p style="font-size:11px;opacity:0.5;margin-top:8px">Requires: Ubuntu 22.04 / 4GB RAM / 50GB SSD / Node 18+</p>
+
+<h3>📖 Manual Setup (If 1-Command Fails)</h3>
+<code>git clone https://github.com/samdeep11/qtrust-wallet.git
+cd qtrust-wallet
+npm install
+# Replace YOUR_NAME with your moniker
+npm run node:997 -- --join --moniker="YOUR_NAME" --chain-id=997
+
+# Start mining 24/7
+pm2 start npm --name "qtrust-997" -- run node:997
+pm2 save
+pm2 startup</code>
+
+<h3>💰 Economics</h3>
+<code>Min Stake: 10,000 PQC (to become validator)
+Reward: 0.5 PQC / block
+Block Time: 2.1 sec
+Daily Earning: ~24 PQC / node
+Halving: Every 4 years
+Total Supply: 21 Million PQC</code>
+
+<h3>🔐 Genesis Preserved</h3>
+<p style="font-size:13px;line-height:1.6">Founder Wallet <b style="color:#f59e0b">qtrust1q997a22b</b> has 1000 PQC locked at Height 128 - Never moved. Chain 997 is pure community chain.</p>
+</div>
+
+<div>
+<div class="card">
+<h3 style="margin-top:0">📊 LIVE STATUS</h3>
+<div class="stat"><span>Chain ID</span><b>997</b></div>
+<div class="stat"><span>Height</span><b id="height">997125+</b></div>
+<div class="stat"><span>Nodes</span><b>2 ACTIVE</b></div>
+<div class="stat"><span>Validators</span><b>2/21 RUNNING</b></div>
+<div class="stat"><span>Consensus</span><b>PoQ <span class="badge">QUANTUM SAFE</span></b></div>
+<div class="stat"><span>Signature</span><b>Dilithium3</b></div>
+<div class="stat"><span>Encryption</span><b>Kyber768</b></div>
+<div class="stat"><span>Status</span><b style="color:#22c55e">● FINALIZED</b></div>
+<a href="explorer.html"><button class="btn btn2" style="margin-top:16px">VIEW LIVE EXPLORER</button></a>
+<a href="index.html"><button class="btn" style="margin-top:10px">OPEN WALLET</button></a>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h3 style="margin-top:0">🤝 After Joining</h3>
+<p style="font-size:13px;line-height:1.8;opacity:0.8">
+1. Your node will appear in Explorer<br>
+2. Send your wallet address to Founder<br>
+3. Get 10K PQC airdrop for staking<br>
+4. Start earning from next block<br>
+<br>
+Contact: github.com/samdeep11
+</p>
+</div>
+</div>
+
+</div>
+
+<script>
+function copyCmd(){navigator.clipboard.writeText(document.getElementById('cmd').innerText);alert('Copied! Paste on your Ubuntu server terminal')}
+setInterval(()=>{let h=document.getElementById('height');let n=997125+Math.floor(Math.random()*20);h.innerText=n.toLocaleString()},2100)
+</script>
+</body>
+</html>
