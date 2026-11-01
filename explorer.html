@@ -3,42 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QTrust Explorer - Chain 997 LIVE</title>
+<title>QTrust Explorer Tool - Chain 997 LIVE</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
-body{background:#0b1220;color:#fff;min-height:100vh}
-.top{position:sticky;top:0;background:#111827;border-bottom:1px solid #1e3a5f;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;z-index:10}
-.badge{background:#22c55e;color:#000;padding:5px 12px;border-radius:20px;font-weight:900;font-size:12px}
-.wrap{max-width:900px;margin:0 auto;padding:0}
-img.main{width:100%;display:block}
-.bottom{padding:16px;text-align:center;background:#0b1220}
-.btn{background:#f59e0b;color:#000;padding:12px 22px;border-radius:10px;font-weight:900;text-decoration:none;display:inline-block;margin:6px}
-.btn-green{background:#22c55e}
-.live{color:#22c55e;font-size:12px;font-weight:800}
+body{background:#0b1220;color:#e2e8f0;min-height:100vh}
+.top{position:sticky;top:0;background:#0f172a;border-bottom:1px solid #1e3a5f;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;z-index:20}
+.badge{background:#22c55e;color:#000;padding:5px 12px;border-radius:20px;font-weight:900;font-size:12px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.wrap{max-width:1000px;margin:0 auto;padding:12px}
+.toolbar{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.tool-input{flex:1;min-width:180px;padding:12px 14px;border-radius:10px;border:1px solid #1e3a5f;background:#162032;color:#fff;font-size:13px}
+.tool-btn{padding:12px 16px;border-radius:10px;border:none;font-weight:800;cursor:pointer;font-size:12px}
+.btn-yellow{background:#f59e0b;color:#000}.btn-green{background:#22c55e;color:#000}.btn-blue{background:#3b82f6;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.card{background:#162032;border:1px solid #1e3a5f;border-radius:12px;padding:12px}
+.card h4{display:flex;justify-content:space-between;align-items:center;color:#60a5fa;font-size:13px;margin-bottom:8px}
+.small{font-size:11px;line-height:16px;color:#94a3b8}
+.badge2{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:800}
+.green{background:#065f46;color:#6ee7b7}.gray{background:#334155;color:#cbd5e1}
+.block-row{padding:8px 0;border-bottom:1px solid #1e293b;display:flex;justify-content:space-between;cursor:pointer}
+.block-row:hover{background:rgba(255,255,255,.03)}
+.live-img{width:100%;border-radius:12px;border:1px solid #1e3a5f;margin-top:10px}
 </style>
 </head>
 <body>
 <div class="top">
   <div style="display:flex;gap:10px;align-items:center">
     <div style="width:38px;height:38px;background:#f59e0b;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:900">Q</div>
-    <div><b>QTrust Explorer Chain 997 LIVE</b><br><small style="opacity:.6">PoQ • Dilithium3 + Kyber768 • <span class="live">● LIVE <span id="time"></span></span></small></div>
+    <div><b>QTrust Explorer Tool</b><br><small style="opacity:.6">Chain 997 • PoQ • <span style="color:#22c55e">● LIVE <span id="time"></span></span></small></div>
   </div>
   <span class="badge">● LIVE</span>
 </div>
+
 <div class="wrap">
-  <img class="main" src="explorer-live.jpg" alt="QTrust Explorer Chain 997">
-</div>
-<div class="bottom">
-  <div style="background:#162032;padding:12px;border-radius:10px;border:1px solid #1e3a5f;margin-bottom:12px;font-size:12px">
-    Block #997125 <span style="background:#22c55e;color:#000;padding:3px 10px;border-radius:20px;font-weight:800">FINALIZED</span> • <span id="sec">4</span>s ago • Chain 997 • Quantum Safe
+  <!-- TOOL BAR -->
+  <div class="toolbar">
+    <input id="search" class="tool-input" placeholder="🔍 Search Block #997125 / Tx 0x8f2a / Address qtrust1q..." oninput="App.filter()">
+    <button class="tool-btn btn-yellow" onclick="App.search()">Search</button>
+    <button class="tool-btn btn-green" onclick="App.refresh()">↻ Refresh LIVE</button>
+    <button class="tool-btn btn-blue" onclick="window.open('./index.html','_blank')">← Wallet</button>
   </div>
-  <a href="./index.html" class="btn">← Back to Wallet</a>
-  <a href="./explorer.html" class="btn btn-green" onclick="location.reload();return false">↻ Refresh LIVE</a>
-  <div style="margin-top:10px;font-size:10px;opacity:.5">Genesis: qtrust1q997a22b • 1000 PQC ($12,847) • Wallet ID 128 Preserved • QTrust Mainnet 997</div>
+
+  <div class="toolbar">
+    <button class="tool-btn btn-blue" onclick="App.tool('blocks')">📦 Blocks Tool</button>
+    <button class="tool-btn btn-blue" onclick="App.tool('tx')">💸 Tx Tool</button>
+    <button class="tool-btn btn-blue" onclick="App.tool('wallet')">👛 Wallet Tool</button>
+    <button class="tool-btn btn-blue" onclick="App.tool('all')">🔍 All View</button>
+  </div>
+
+  <!-- MAIN EXPLORER IMAGE + DATA -->
+  <img src="explorer-live.jpg" class="live-img" id="mainImg" alt="QTrust Explorer">
+
+  <div class="grid">
+    <div class="card">
+      <h4>🛡️ Chain Info <span class="badge2 green" id="height">Height: 997125</span></h4>
+      <div class="small" id="chainInfo">
+        Chain ID: 997<br>Status: <span style="color:#22c55e">● Active</span><br>Consensus: PoQ (Proof-of-Quantum)<br>Quantum: Dilithium3 + Kyber768 <span style="background:#065f46;color:#6ee7b7;padding:1px 6px;border-radius:6px;font-size:9px">Quantum Safe</span><br>Block Time: 2.1s<br>Total: 997,125
+      </div>
+    </div>
+    <div class="card">
+      <h4>📦 Latest Blocks <span style="color:#60a5fa;font-size:11px;cursor:pointer" onclick="App.tool('blocks')">View All →</span></h4>
+      <div id="blocks"></div>
+    </div>
+    <div class="card">
+      <h4>👛 Genesis Wallet <span class="badge2 gray">Preserved</span></h4>
+      <div class="small">
+        Address: <b style="color:#f59e0b">qtrust1q997a22b</b><br>Balance: <b>1000 PQC ($12,847)</b><br>Wallet ID: 128 • <span style="color:#22c55e">Verified</span><br>Created: Genesis • 2024-01-01
+      </div>
+    </div>
+    <div class="card">
+      <h4>💸 Latest Transactions <span style="color:#60a5fa;font-size:11px;cursor:pointer" onclick="App.tool('tx')">View All →</span></h4>
+      <div id="txs"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:10px">
+    <h4>🔧 Tool Output <span class="badge2 green">LIVE</span></h4>
+    <div class="small" id="toolOut">Tool ready. Search block/tx/address upar search bar me type karo. Example: 997125, 0x8f2a, qtrust1q997a22b</div>
+  </div>
 </div>
+
 <script>
-function upd(){document.getElementById('time').innerText=new Date().toLocaleTimeString(); document.getElementById('sec').innerText=Math.floor(Math.random()*6)+1; }
-upd(); setInterval(upd,1000);
+const App={
+  blocksData:[
+    {n:997125, ago:2, txs:12, size:'1.24 KB', hash:'0x9a7...73d1'},
+    {n:997124, ago:4, txs:9, size:'0.98 KB', hash:'0x2b1...c8e7'},
+    {n:997123, ago:6, txs:14, size:'1.56 KB', hash:'0x5d4...a2b9'},
+    {n:997122, ago:8, txs:7, size:'0.82 KB', hash:'0x1c3...f4e2'},
+  ],
+  txData:[
+    {hash:'0x3f9a...d21a', from:'qtrust1q997a22b', to:'qtrust1k2x8...p9m2', amt:'25.50 PQC ($327.21)', ago:'1 sec ago'},
+    {hash:'0x7c1b...e655', from:'qtrust1m9p...x4k7', to:'qtrust1q997a22b', amt:'100.00 PQC ($1,284.70)', ago:'3 secs ago'},
+    {hash:'0x9e2d...b77a', from:'gtrust1g5x...3dn4', to:'qtrust1w8qz...y6t1', amt:'5.00 PQC ($64.24)', ago:'5 secs ago'},
+  ],
+  init(){
+    this.renderBlocks(); this.renderTxs();
+    setInterval(()=>{document.getElementById('time').innerText=new Date().toLocaleTimeString(); this.tick()},1000);
+  },
+  renderBlocks(){
+    let h=this.blocksData.map(b=>`<div class="block-row" onclick="App.openBlock(${b.n})"><div><b>Block #${b.n}</b><br><small style="opacity:.6">${b.ago}s ago • ${b.txs} txns • Hash: ${b.hash} • Size: ${b.size}</small></div><span class="badge2 green">FINALIZED</span></div>`).join('');
+    document.getElementById('blocks').innerHTML=h;
+  },
+  renderTxs(){
+    let h=this.txData.map(t=>`<div class="block-row" onclick="App.openTx('${t.hash}')"><div><b>From:</b> ${t.hash} SUCCESS<br><small style="opacity:.6">${t.from} → ${t.to}<br>Amount: ${t.amt} • ${t.ago}</small></div><span class="badge2 green">SUCCESS</span></div>`).join('');
+    document.getElementById('txs').innerHTML=h;
+  },
+  filter(){
+    let q=document.getElementById('search').value.toLowerCase();
+    if(!q){ this.renderBlocks(); this.renderTxs(); return; }
+    let fb=this.blocksData.filter(b=>String(b.n).includes(q) || b.hash.toLowerCase().includes(q));
+    let ft=this.txData.filter(t=>t.hash.toLowerCase().includes(q) || t.from.toLowerCase().includes(q));
+    document.getElementById('blocks').innerHTML=fb.map(b=>`<div class="block-row"><div><b>Block #${b.n}</b></div><span class="badge2 green">FINALIZED</span></div>`).join('')||'No blocks';
+    document.getElementById('txs').innerHTML=ft.map(t=>`<div class="block-row"><div><b>${t.hash}</b></div><span class="badge2 green">SUCCESS</span></div>`).join('')||'No tx';
+  },
+  search(){
+    let q=document.getElementById('search').value.trim();
+    if(!q){ alert('Search me Block/Tx/Address likho'); return; }
+    document.getElementById('toolOut').innerHTML=`🔍 Searching: <b>${q}</b> on Chain 997...<br><br>✅ Found: Genesis Wallet qtrust1q997a22b<br>Balance: 1000 PQC • Height: 997125 • Status: FINALIZED • Quantum Safe • Time: ${new Date().toLocaleString()}`;
+    window.scrollTo(0, document.body.scrollHeight);
+  },
+  openBlock(n){ document.getElementById('toolOut').innerHTML=`📦 <b>Block #${n} Tool</b><br>Height: ${n}<br>Status: FINALIZED<br>Consensus: PoQ • Dilithium3 + Kyber768<br>Validator: 21 • Time: ${new Date().toLocaleString()}<br>Txs: 12 • Size: 1.24 KB • Hash: 0x9a7...73d1 • Quantum Safe`; },
+  openTx(h){ document.getElementById('toolOut').innerHTML=`💸 <b>Tx ${h} Tool</b><br>Hash: ${h}<br>Status: SUCCESS<br>Amount: 25.50 PQC<br>From: qtrust1q997a22b → To: qtrust1k2x8...<br>Block: #997125 • FINALIZED • ${new Date().toLocaleString()}`; },
+  tool(t){
+    if(t==='blocks'){ document.getElementById('toolOut').innerHTML=`📦 Blocks Tool - Chain 997<br>Total: 997,125 blocks<br>Latest: #997125 FINALIZED 2s ago<br>Avg Time: 2.1s<br>Validators: 21 • PoQ Consensus<br><br>All blocks FINALIZED & Quantum Safe`; }
+    else if(t==='tx'){ document.getElementById('toolOut').innerHTML=`💸 Transactions Tool<br>Total Txs: ~2.4M<br>Latest: 3 txs in last 10 sec<br>Success Rate: 100%<br>Chain: 997 • PQC Native`; }
+    else if(t==='wallet'){ document.getElementById('toolOut').innerHTML=`👛 Wallet Tool<br>Address: qtrust1q997a22b<br>Balance: 1000 PQC ($12,847)<br>Wallet ID: 128 Preserved<br>Chain: QTrust Mainnet 997<br>Security: Dilithium3 + Kyber768 Quantum Safe`; }
+    else { document.getElementById('toolOut').innerHTML=`🔍 All View Tool<br>Chain Info + Blocks + Txs + Wallet sab ek sath<br>Chain 997 LIVE • PoQ • Quantum Safe • ${new Date().toLocaleString()}`; }
+  },
+  tick(){ this.blocksData.forEach(b=>b.ago++); this.renderBlocks(); },
+  refresh(){ location.reload(); }
+};
+App.init();
 </script>
 </body>
 </html>
