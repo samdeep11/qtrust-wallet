@@ -3,48 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QTrust Explorer V4 Pro - Chain 997 Live + Faucet</title>
+<title>QTrust Explorer V4.1 Final - Chain 997</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
 body{background:#070e22;color:#e2e8f0;padding:12px;max-width:430px;margin:0 auto}
 .header{background:linear-gradient(135deg,#1e3a8a,#4a76f7);border-radius:18px;padding:16px;display:flex;justify-content:space-between;align-items:center}
 .header h1{font-size:18px}.live{color:#22c55e;font-size:11px;background:#00000066;padding:4px 8px;border-radius:10px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
-.stat{background:#111c33;border:1px solid #1e3a5f;border-radius:12px;padding:12px;text-align:center}
-.stat b{color:#5ee9a8;font-size:18px;display:block}
-.search{width:100%;padding:14px;border-radius:12px;border:1px solid #1e3a5f;background:#0f1a36;color:#fff;margin:10px 0}
-.tabs{display:flex;gap:8px;margin:10px 0}
-.tab{flex:1;padding:10px;border-radius:10px;border:1px solid #1e3a5f;background:#111c33;color:#8fb0ff;text-align:center;cursor:pointer;font-weight:700;font-size:12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.stat{background:#0f1b36;border:1px solid #1e3a5f;border-radius:16px;padding:14px;text-align:center}
+.stat small{font-size:12px;color:#8fb0ff}.stat b{color:#5ee9a8;font-size:20px;display:block;margin:4px 0}
+.stat b.price{color:#22ff88}.stat b.balance{color:#5ee9a8}
+.search{width:100%;padding:14px;border-radius:14px;border:1px solid #1e3a5f;background:#0f1a36;color:#fff;margin:10px 0;font-size:13px}
+.faucet-box{margin:14px 0;background:linear-gradient(135deg,#052e16,#16a34a);border-radius:20px;padding:16px;text-align:center;border:1px solid #22c55e;position:relative}
+.copy-btn{padding:8px 10px;border-radius:8px;border:1px solid #22c55e;background:#000;color:#22c55e;font-size:10px;font-weight:700}
+.chart{height:52px;background:#00000040;border-radius:10px;margin:10px 0;position:relative;overflow:hidden;border:1px solid #22c55e44}
+.chart-line{position:absolute;bottom:0;left:0;right:0;height:36px;background:linear-gradient(to top,#22c55e55,transparent);border-bottom:2px solid #22c55e}
+.tabs{display:flex;gap:8px;margin:12px 0}
+.tab{flex:1;padding:12px;border-radius:14px;border:1px solid #1e3a5f;background:#0f1b36;color:#8fb0ff;text-align:center;cursor:pointer;font-weight:700;font-size:13px}
 .tab.on{background:#f59e0b;color:#000;border-color:#f59e0b}
-.block{background:#111c33;border:1px solid #1e3a5f;border-radius:12px;padding:12px;margin:8px 0;display:flex;justify-content:space-between}
-.block-left b{color:#fde68a}.block-right{text-align:right;font-size:11px}
-.hash{font-size:9px;color:#64748b;word-break:break-all;margin-top:4px}
-.faucet-box{margin:12px 0;background:linear-gradient(135deg,#052e16,#16a34a);border-radius:14px;padding:16px;text-align:center;border:1px solid #22c55e}
+.block{background:#0f1b36;border:1px solid #1e3a5f;border-radius:16px;padding:14px;margin:8px 0;display:flex;justify-content:space-between;cursor:pointer}
+.block-left b{color:#fde68a;font-size:16px}.block-right{text-align:right;font-size:12px}
+.hash{font-size:10px;color:#64748b;word-break:break-all;margin-top:4px}
 .footer{margin-top:20px;text-align:center;font-size:10px;color:#475569}
 a{color:#4a76f7;text-decoration:none}
 </style>
 </head>
 <body>
 <div class="header">
-<div><h1>🔍 QTrust Explorer</h1><small>CHAIN 997 • PQC • Dilithium3 + Kyber768</small></div>
-<div class="live">● LIVE #<span id="liveBlock">119572892</span></div>
+<div><h1 style="font-size:20px">🔍 QTrust Explorer</h1><small style="font-size:11px;opacity:.8">QTRUST CHAIN 997 • PQC Live</small></div>
+<div class="live">● LIVE #<span id="liveBlock">119572902</span></div>
 </div>
 
 <div class="stats">
-<div class="stat"><small>Latest Block</small><b id="bNo">#119572892</b><small>~15s block time</small></div>
-<div class="stat"><small>Total Tx</small><b id="txTotal">358,718,693</b><small>Chain 997</small></div>
-<div class="stat"><small>Price</small><b id="price">$12.847</b><small style="color:#22c55e" id="change">+2.4% Live</small></div>
-<div class="stat"><small>Your Balance</small><b id="yourBal">998.36 PQC</b><small id="usdBal">$12,847 Live</small></div>
+<div class="stat"><small>Latest Block</small><b class="price" id="bNo">#119572902</b><small>~15s block time</small></div>
+<div class="stat"><small>Total Tx</small><b id="txTotal">358,718,706</b><small>Chain 997</small></div>
+<div class="stat"><small>Price</small><b class="price" id="price">$12.992</b><small style="color:#22c55e" id="change">+2.4% Live</small></div>
+<div class="stat"><small>Your Balance</small><b class="balance" id="yourBal">1011.7819 PQC</b><small id="usdBal">$13213.87 Live</small></div>
 </div>
 
 <input id="searchBox" class="search" placeholder="🔍 Search by Address / Tx Hash / Block: qtrust1q99" oninput="doSearch()">
 
 <div id="faucet" class="faucet-box">
-<h3>🚰 QTrust Testnet Faucet - Free PQC</h3>
-<p style="font-size:11px;margin:6px 0;opacity:.9">Claim 10 PQC free every 24h for testing Chain 997 - Live</p>
-<input id="faucetAddr" value="qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f" style="width:100%;padding:10px;border-radius:8px;border:none;margin:8px 0;font-size:11px">
-<button onclick="claimFaucet()" style="width:100%;padding:12px;border-radius:10px;border:none;background:#000;color:#22c55e;font-weight:900;cursor:pointer">Claim 10 PQC → Wallet</button>
-<small id="faucetMsg" style="display:block;margin-top:8px;font-size:11px;color:#fff"></small>
+<span style="position:absolute;top:10px;right:12px;background:#000;color:#22c55e;font-size:9px;padding:3px 8px;border-radius:10px;border:1px solid #22c55e">● FAUCET LIVE</span>
+<h3 style="font-size:17px">🚰 QTrust Testnet Faucet - Free PQC</h3>
+<p style="font-size:11px;margin:8px 0;opacity:.9">Claim 10 PQC free every 24h for testing Chain 997 - Live</p>
+<div style="display:flex;gap:6px;margin:8px 0"><input id="faucetAddr" value="qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f" style="flex:1;padding:12px;border-radius:10px;border:none;font-size:11px"><button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('faucetAddr').value);document.getElementById('faucetMsg').innerText='✅ Copied address!'">Copy</button></div>
+<div class="chart"><div class="chart-line"></div><small style="position:absolute;top:6px;left:10px;font-size:10px;color:#5ee9a8">PQC Price Live $12.992 ↗ +2.4%</small><small style="position:absolute;bottom:4px;right:10px;font-size:8px;color:#fff;opacity:.6">15s update</small></div>
+<button onclick="claimFaucet()" style="width:100%;padding:14px;border-radius:12px;border:none;background:#000;color:#22c55e;font-weight:900;cursor:pointer;font-size:15px">Claim 10 PQC → Wallet</button>
+<small id="faucetMsg" style="display:block;margin-top:10px;font-size:12px;color:#fff;font-weight:700"></small>
 </div>
 
 <div class="tabs">
@@ -58,109 +64,47 @@ a{color:#4a76f7;text-decoration:none}
 <div id="listAddr" style="display:none"></div>
 
 <div class="footer">
-QTrust Project • Wallet ID 128 Preserved • Chain ID 997 • PQC Dilithium3 + Kyber768 • V4 Pro + Faucet Live<br>
+QTrust Project • Wallet ID 128 Preserved • Chain ID 997 • PQC Dilithium3 + Kyber768 • V4.1 Final<br>
 Built by Samdeep • <span id="time"></span><br><br>
-<a href="./index.html" style="background:#fde68a;color:#000;padding:10px 20px;border-radius:10px;font-weight:900;text-decoration:none">💼 Open Wallet V3</a> <a href="./landing.html" style="background:#fff;color:#000;padding:10px 20px;border-radius:10px;font-weight:900;text-decoration:none">🏠 Landing</a>
+<a href="./index.html" style="background:#fde68a;color:#000;padding:10px 20px;border-radius:10px;font-weight:900">💼 Wallet V3</a> <a href="./landing.html" style="background:#fff;color:#000;padding:10px 20px;border-radius:10px;font-weight:900">🏠 Home</a>
 </div>
 
 <script>
 const ADDR = "qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f";
-let blocks=[], txs=[];
-let currentTab='blocks';
-
-function genBlock(n){
-  let hash = '0x'+Array(64).fill(0).map(()=> '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');
-  let txCount = Math.floor(Math.random()*8)+1;
-  return { number:n, hash:hash, time:Date.now()-Math.random()*3600000, txs:txCount, miner:ADDR.slice(0,18)+'...', reward:(2+Math.random()).toFixed(2) };
-}
-function genTx(){
-  let h='0x'+Array(64).fill(0).map(()=> '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');
-  return { hash:h, from:'qtrust1q'+Math.random().toString(36).slice(2,10), to:ADDR.slice(0,16)+'...', amount:(Math.random()*10+0.1).toFixed(4), time:Date.now()-Math.random()*600000 };
-}
+let blocks=[], txs=[]; let currentTab='blocks';
+function genBlock(n){let h='0x'+Array(64).fill(0).map(()=> '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');return {number:n,hash:h,time:Date.now()-Math.random()*3600000,txs:Math.floor(Math.random()*8)+1,miner:ADDR.slice(0,18)+'...',reward:(2+Math.random()*1.5).toFixed(2)}}
+function genTx(){let h='0x'+Array(64).fill(0).map(()=> '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');return {hash:h,from:'qtrust1q'+Math.random().toString(36).slice(2,10),to:ADDR.slice(0,16)+'...',amount:(Math.random()*10+0.1).toFixed(4),time:Date.now()-Math.random()*600000}}
 function init(){
-  let saved = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'null');
-  let base = saved ? saved.block : 119572892;
-  blocks = Array.from({length:20}, (_,i)=> genBlock(base-i));
-  txs = Array.from({length:20}, ()=> genTx());
+  let saved = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'null'); let base = saved? saved.block : 119572902;
+  blocks = Array.from({length:20},(_,i)=> genBlock(base-i)); txs = Array.from({length:25},()=> genTx());
   render(); updateStats();
-  setInterval(()=>{
-    base++; blocks.unshift(genBlock(base)); blocks.pop();
-    txs.unshift(genTx()); txs.pop();
-    render(); updateStats();
-    let balData = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"998.3603","price":"12.847"}');
-    let bal = parseFloat(balData.balance)||998.36;
-    let price = parseFloat(balData.price)||12.847;
-    localStorage.setItem('qtrust_testnet_data', JSON.stringify({balance:bal.toFixed(4), price:price.toString(), block:base, time:Date.now()}));
+  setInterval(()=>{base++; blocks.unshift(genBlock(base)); blocks.pop(); txs.unshift(genTx()); txs.pop(); render(); updateStats();
+    let balData = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"1011.7819","price":"12.992"}');
+    localStorage.setItem('qtrust_testnet_data', JSON.stringify({balance:balData.balance, price:balData.price, block:base, time:Date.now()}));
   },15000);
-  setInterval(()=>{ document.getElementById('time').innerText = new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}) },1000);
+  setInterval(()=>{document.getElementById('time').innerText=new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})},1000);
 }
 function updateStats(){
-  document.getElementById('liveBlock').innerText = blocks[0].number;
-  document.getElementById('bNo').innerText = '#'+blocks[0].number;
-  document.getElementById('txTotal').innerText = (blocks[0].number*3).toLocaleString();
-  let price = (12.8+Math.random()*0.5).toFixed(3);
-  document.getElementById('price').innerText = '$'+price;
-  let saved = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"998.3603","price":"12.847"}');
-  document.getElementById('yourBal').innerText = parseFloat(saved.balance).toFixed(4)+' PQC';
-  document.getElementById('usdBal').innerText = '$'+(parseFloat(saved.balance)*parseFloat(saved.price)).toFixed(2)+' Live';
+  document.getElementById('liveBlock').innerText=blocks[0].number; document.getElementById('bNo').innerText='#'+blocks[0].number;
+  document.getElementById('txTotal').innerText=(blocks[0].number*3).toLocaleString();
+  let p=(12.8+Math.random()*0.6).toFixed(3); document.getElementById('price').innerText='$'+p;
+  let saved = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"1011.7819","price":"12.992"}');
+  document.getElementById('yourBal').innerText=parseFloat(saved.balance).toFixed(4)+' PQC';
+  document.getElementById('usdBal').innerText='$'+(parseFloat(saved.balance)*parseFloat(saved.price)).toFixed(2)+' Live';
 }
-function switchTab(t){
-  currentTab=t;
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
-  document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.add('on');
-  document.getElementById('listBlocks').style.display=t==='blocks'?'block':'none';
-  document.getElementById('listTx').style.display=t==='tx'?'block':'none';
-  document.getElementById('listAddr').style.display=t==='addr'?'block':'none';
-  render();
-}
+function switchTab(t){currentTab=t; document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on')); document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.add('on'); document.getElementById('listBlocks').style.display=t==='blocks'?'block':'none'; document.getElementById('listTx').style.display=t==='tx'?'block':'none'; document.getElementById('listAddr').style.display=t==='addr'?'block':'none'; render();}
 function render(){
   if(currentTab==='blocks'){
-    document.getElementById('listBlocks').innerHTML = blocks.map(b=>`
-      <div class="block">
-        <div class="block-left"><b>Block #${b.number}</b><div class="hash">${b.hash.slice(0,32)}...</div><small>Miner: ${b.miner}</small></div>
-        <div class="block-right"><b style="color:#5ee9a8">${b.txs} txs</b><br><small>${b.reward} PQC reward</small><br><small>${new Date(b.time).toLocaleTimeString()}</small></div>
-      </div>`).join('');
-  } else if(currentTab==='tx'){
-    document.getElementById('listTx').innerHTML = txs.map(t=>`
-      <div class="block">
-        <div class="block-left"><b>Tx ${t.hash.slice(0,10)}...</b><div class="hash">From: ${t.from}<br>To: ${t.to}</div></div>
-        <div class="block-right"><b>${t.amount} PQC</b><br><small style="color:#22c55e">Success</small><br><small>${new Date(t.time).toLocaleTimeString()}</small></div>
-      </div>`).join('');
-  } else {
-    let saved = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"998.3603"}');
-    document.getElementById('listAddr').innerHTML = `
-      <div class="block"><div class="block-left"><b>1. ${ADDR.slice(0,20)}... (You)</b><div class="hash">${ADDR}</div></div><div class="block-right"><b>${parseFloat(saved.balance).toFixed(4)} PQC</b><br><small>Live</small></div></div>
-      <div class="block"><div class="block-left"><b>2. qtrust1q...a9b2</b><div class="hash">Validator Node</div></div><div class="block-right"><b>50.00 PQC</b></div></div>
-      <div class="block"><div class="block-left"><b>3. qtrust1q...c4d1</b><div class="hash">Test Faucet</div></div><div class="block-right"><b>1000.00 PQC</b></div></div>
-    `;
+    document.getElementById('listBlocks').innerHTML=blocks.map(b=>`<div class="block" onclick="alert('Block #${b.number}\\nHash: ${b.hash}\\nTxs: ${b.txs}\\nReward: ${b.reward} PQC\\nMiner: ${ADDR}\\nTime: ${new Date(b.time).toLocaleString()}')"><div class="block-left"><b>Block #${b.number}</b><div class="hash">${b.hash.slice(0,38)}...</div><small>Miner: ${b.miner}</small></div><div class="block-right"><b style="color:#22c55e">${b.txs} txs</b><br><small>${b.reward} PQC reward</small><br><small>${new Date(b.time).toLocaleTimeString()}</small></div></div>`).join('');
+  }else if(currentTab==='tx'){
+    document.getElementById('listTx').innerHTML=txs.map(t=>`<div class="block" onclick="alert('Tx Hash: ${t.hash}\\nFrom: ${t.from}\\nTo: ${t.to}\\nAmount: ${t.amount} PQC')"><div class="block-left"><b>Tx ${t.hash.slice(0,10)}...</b><div class="hash">From: ${t.from}<br>To: ${t.to}</div></div><div class="block-right"><b>${t.amount} PQC</b><br><small style="color:#22c55e">Success</small><br><small>${new Date(t.time).toLocaleTimeString()}</small></div></div>`).join('');
+  }else{
+    let saved=JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"1011.7819"}');
+    document.getElementById('listAddr').innerHTML=`<div class="block"><div class="block-left"><b>1. ${ADDR.slice(0,18)}... (You)</b><div class="hash">${ADDR}</div></div><div class="block-right"><b>${parseFloat(saved.balance).toFixed(4)} PQC</b><br><small style="color:#22c55e">Live • 100%</small></div></div><div class="block"><div class="block-left"><b>2. Validator Node</b><div class="hash">qtrust1q...a9b2 • Chain 997</div></div><div class="block-right"><b>50.00 PQC</b><br><small>Staking</small></div></div><div class="block"><div class="block-left"><b>3. Faucet Reserve</b><div class="hash">qtrust1q...c4d1 • Test Faucet</div></div><div class="block-right"><b>10000 PQC</b><br><small>Reserve</small></div></div>`;
   }
 }
-function doSearch(){
-  let q=document.getElementById('searchBox').value.toLowerCase();
-  if(!q){ render(); return; }
-  let all = [...blocks.map(b=>({...b, type:'block'})), ...txs.map(t=>({...t, type:'tx'}))];
-  let filtered = all.filter(x=> (x.hash&&x.hash.includes(q)) || (x.number&&x.number.toString().includes(q)) || ADDR.toLowerCase().includes(q));
-  let html = filtered.slice(0,10).map(x=> `<div class="block"><div class="block-left"><b>${x.type==='block'?'Block #'+x.number:'Tx '+x.hash.slice(0,12)}</b><div class="hash">${x.hash}</div></div><div class="block-right"><small>Found</small></div></div>`).join('');
-  document.getElementById('listBlocks').innerHTML = html || '<div class="block">No results for '+q+'</div>';
-  document.getElementById('listBlocks').style.display='block';
-  document.getElementById('listTx').style.display='none';
-  document.getElementById('listAddr').style.display='none';
-}
-function claimFaucet(){
-  let last = localStorage.getItem('qtrust_faucet_last');
-  if(last && Date.now()-parseInt(last) < 24*3600000){ 
-    let hours = Math.ceil((24*3600000 - (Date.now()-parseInt(last)))/3600000);
-    document.getElementById('faucetMsg').innerText='⏳ Already claimed! Come after '+hours+'h'; 
-    return; 
-  }
-  let balData = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"998.3603","price":"12.847","block":119572892}');
-  let newBal = parseFloat(balData.balance)+10;
-  localStorage.setItem('qtrust_testnet_data', JSON.stringify({balance:newBal.toFixed(4), price:balData.price||'12.847', block:balData.block||119572892, time:Date.now()}));
-  localStorage.setItem('qtrust_faucet_last', Date.now().toString());
-  document.getElementById('faucetMsg').innerText='✅ 10 PQC sent! New Balance: '+newBal.toFixed(4)+' PQC - Redirecting to Wallet...';
-  updateStats();
-  setTimeout(()=>{ window.location.href='./index.html'; },1500);
-}
+function doSearch(){let q=document.getElementById('searchBox').value.toLowerCase(); if(!q){render();return;} let all=[...blocks.map(b=>({...b,type:'block'})),...txs.map(t=>({...t,type:'tx'}))]; let f=all.filter(x=>(x.hash&&x.hash.toLowerCase().includes(q))||(x.number&&x.number.toString().includes(q))||ADDR.toLowerCase().includes(q)); document.getElementById('listBlocks').innerHTML=f.slice(0,10).map(x=>`<div class="block"><div class="block-left"><b>${x.type==='block'?'Block #'+x.number:'Tx '+x.hash.slice(0,12)}</b><div class="hash">${x.hash}</div></div><div class="block-right"><small>Found</small></div></div>`).join('')||'<div class="block">No results for '+q+'</div>'; document.getElementById('listBlocks').style.display='block'; document.getElementById('listTx').style.display='none'; document.getElementById('listAddr').style.display='none';}
+function claimFaucet(){let last=localStorage.getItem('qtrust_faucet_last'); if(last&&Date.now()-parseInt(last)<24*3600000){let h=Math.ceil((24*3600000-(Date.now()-parseInt(last)))/3600000); document.getElementById('faucetMsg').innerText='⏳ Already claimed! Come after '+h+'h'; return;} let balData=JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"1011.7819","price":"12.992","block":119572902}'); let newBal=parseFloat(balData.balance)+10; localStorage.setItem('qtrust_testnet_data', JSON.stringify({balance:newBal.toFixed(4), price:balData.price||'12.992', block:balData.block||119572902, time:Date.now()})); localStorage.setItem('qtrust_faucet_last', Date.now().toString()); document.getElementById('faucetMsg').innerText='✅ 10 PQC sent! New Balance: '+newBal.toFixed(4)+' PQC - Redirecting...'; updateStats(); setTimeout(()=>{window.location.href='./index.html';},1500);}
 init();
 </script>
 </body>
