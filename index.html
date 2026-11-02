@@ -69,7 +69,29 @@ const App={
   showQR(){ window.open(`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${FINAL_QTRUST_ADDR}`); },
   copyAddr(){ let text=FINAL_QTRUST_ADDR; if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(()=>alert('Copied: '+text)).catch(()=>{fallback(text)}); } else{ fallback(text); } function fallback(t){ let ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); alert('Copied: '+t);}catch(e){prompt('Copy manually:',t);} document.body.removeChild(ta); } },
   logout(){ if(confirm('Logout? Data safe rahega!')){ this.showLogin(); } },
-  backup(){ let d=this.ensure(); let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.innerHTML=`<h3>🔐 Backup & Security</h3><div class="small">ID: ${d.qid}</div><div class="small">WID: ${d.wid}</div><div class="small">Public: ${d.addr}</div><div class="small">PK: ${d.pk}</div><div class="small">Seed: ${d.seed}</div>`; },
+backup(){
+  let d=this.ensure();
+  let el=document.getElementById('setDetail');
+  el.style.display='block';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('pSettings').classList.add('on');
+  document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on'));
+  document.getElementById('bSettings').classList.add('on');
+  el.innerHTML=`
+    <h3>Backup & Security</h3>
+    <div class="small">ID: ${d.qid}</div>
+    <div class="small">WID: ${d.wid}</div>
+    <div class="small">Public: ${d.addr}</div>
+    <div style="margin-top:15px; padding:10px; background:#1a1a1a; border:1px solid #ff3b3b; border-radius:8px;">
+      <b style="color:#ff6b6b;">PRIVATE - DO NOT SHARE</b><br><br>
+      <button onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Reveal PK</button>
+      <div style="display:none; word-break:break-all; margin-top:8px;">PK: ${d.pk}</div>
+      <br><br>
+      <button onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Reveal Seed</button>
+      <div style="display:none; word-break:break-all; margin-top:8px;">Seed: ${d.seed}</div>
+    </div>
+  `;
+},
   explorer(){
     let el=document.getElementById('setDetail'); 
     el.style.display='block';
