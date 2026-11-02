@@ -77,20 +77,44 @@ backup(){
   document.getElementById('pSettings').classList.add('on');
   document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on'));
   document.getElementById('bSettings').classList.add('on');
-  el.innerHTML=`
-    <h3>Backup & Security</h3>
-    <div class="small">ID: ${d.qid}</div>
-    <div class="small">WID: ${d.wid}</div>
-    <div class="small">Public: ${d.addr}</div>
-    <div style="margin-top:15px; padding:10px; background:#1a1a1a; border:1px solid #ff3b3b; border-radius:8px;">
-      <b style="color:#ff6b6b;">PRIVATE - DO NOT SHARE</b><br><br>
-      <button onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Reveal PK</button>
-      <div style="display:none; word-break:break-all; margin-top:8px;">PK: ${d.pk}</div>
-      <br><br>
-      <button onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Reveal Seed</button>
-      <div style="display:none; word-break:break-all; margin-top:8px;">Seed: ${d.seed}</div>
-    </div>
-  `;
+  el.textContent='';
+  let h3=document.createElement('h3');
+  h3.textContent='Backup & Security';
+  el.appendChild(h3);
+  ['ID: '+d.qid,'WID: '+d.wid,'Public: '+d.addr].forEach(t=>{
+    let s=document.createElement('div');
+    s.className='small';
+    s.textContent=t;
+    el.appendChild(s);
+  });
+  let box=document.createElement('div');
+  box.style.cssText='margin-top:15px; padding:10px; background:#1a1a1a; border:1px solid #ff3b3b; border-radius:8px;';
+  let warn=document.createElement('b');
+  warn.style.color='#ff6b6b';
+  warn.textContent='PRIVATE - DO NOT SHARE';
+  box.appendChild(warn);
+  box.appendChild(document.createElement('br'));
+  box.appendChild(document.createElement('br'));
+  let btn1=document.createElement('button');
+  btn1.textContent='Reveal PK';
+  let pkDiv=document.createElement('div');
+  pkDiv.style.cssText='display:none; word-break:break-all; margin-top:8px; background:#000; padding:8px; color:#fff; border-radius:6px; font-size:11px;';
+  pkDiv.textContent='PK: '+d.pk;
+  btn1.onclick=()=>{pkDiv.style.display='block'; btn1.style.display='none';};
+  let btn2=document.createElement('button');
+  btn2.textContent='Reveal Seed';
+  btn2.style.cssText='margin-top:10px;';
+  let seedDiv=document.createElement('div');
+  seedDiv.style.cssText='display:none; word-break:break-all; margin-top:8px; background:#000; padding:8px; color:#fff; border-radius:6px; font-size:11px;';
+  seedDiv.textContent='Seed: '+d.seed;
+  btn2.onclick=()=>{seedDiv.style.display='block'; btn2.style.display='none';};
+  box.appendChild(btn1);
+  box.appendChild(pkDiv);
+  box.appendChild(document.createElement('br'));
+  box.appendChild(document.createElement('br'));
+  box.appendChild(btn2);
+  box.appendChild(seedDiv);
+  el.appendChild(box);
 },
   explorer(){
     let el=document.getElementById('setDetail'); 
