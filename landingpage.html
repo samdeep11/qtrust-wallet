@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QTrust - Quantum Safe Chain 997</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}body{background:#070e22;color:#fff;overflow-x:hidden}
+.hero{background:linear-gradient(135deg,#1e3a8a 0%,#4a76f7 100%);padding:30px 16px;text-align:center;border-radius:0 0 28px 28px}
+.logo{width:80px;height:80px;border-radius:20px;background:#fff;padding:8px}
+.btn{padding:14px 20px;border-radius:14px;border:none;font-weight:900;cursor:pointer;margin:6px;display:inline-block;text-decoration:none}
+.btn-wallet{background:#fde68a;color:#000}.btn-explorer{background:#fff;color:#1e3a8a}.btn-faucet{background:#22c55e;color:#000}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px}
+.s{background:#111c33;border:1px solid #1e3a5f;border-radius:12px;padding:10px;text-align:center}.s b{color:#5ee9a8;display:block;font-size:16px}
+.card{margin:12px;background:#111c33;border:1px solid #1e3a5f;border-radius:16px;padding:16px}
+</style></head><body>
+<div class="hero">
+<img src="logo.png" class="logo" onerror="this.src='qtrust-icon.png'">
+<h1 style="margin-top:12px;font-size:32px">QTrust</h1>
+<p>Quantum-Safe • PQC Dilithium3 + Kyber768 • Chain ID 997</p>
+<div style="margin-top:16px">
+<a class="btn btn-wallet" href="./index.html">💼 Open Wallet V3</a>
+<a class="btn btn-explorer" href="./explorer.html">🔍 Explorer V4 Pro</a>
+</div>
+<div style="margin-top:12px"><a class="btn btn-faucet" href="./explorer.html#faucet">🚰 Claim Free Testnet PQC - Faucet</a></div>
+</div>
+<div class="stats">
+<div class="s"><small>Latest Block</small><b id="b">119572892</b><small>Live</small></div>
+<div class="s"><small>Total Tx</small><b>358M+</b><small>Chain 997</small></div>
+<div class="s"><small>Price</small><b>$12.847</b><small>PQC</small></div>
+</div>
+<div class="card"><h3>🛡️ Why QTrust?</h3><p style="margin-top:8px;font-size:13px;color:#8fb0ff;line-height:18px">• AES-256 Encrypted Vault • Auto-lock 2 min • Biometric Unlock • Testnet Live Balance every 15s • Explorer with Blocks + Tx + Holders • Wallet ID 128 Preserved • Quantum-safe PQC</p></div>
+<div class="card" style="text-align:center"><b>Wallet Address:</b><br><small style="word-break:break-all;color:#5ee9a8">qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f</small><br><br><a class="btn btn-wallet" href="./index.html">Launch V3 Wallet</a></div>
+<script>
+let base=119572892; setInterval(()=>{ base++; document.getElementById('b').innerText=base; localStorage.setItem('qtrust_testnet_data', JSON.stringify({balance:(998+Math.random()*4).toFixed(4), price:(12.8+Math.random()*0.5).toFixed(3), block:base, time:Date.now()})); },15000);
+</script></body></html>
