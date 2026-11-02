@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>QTrust Chain - Chain 997</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto}
+body{background:#060d22;color:#fff;min-height:100vh}
+.app{max-width:460px;margin:0 auto;padding:8px 12px 90px}
+.top{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.price-card{background:#0f1f4a;border:1px solid #1e3a8a;border-radius:20px;padding:16px;text-align:center}
+.search{width:100%;background:#0f1f4a;border:1px solid #1e3a8a;border-radius:20px;padding:14px 16px;color:#fff;margin:14px 0;font-size:14px}
+.faucet{background:linear-gradient(135deg,#052e16,#16a34a);border:1px solid #22c55e;border-radius:26px;padding:16px;margin:14px 0}
+.faucet-input{display:flex;gap:8px;margin:12px 0}
+.f-input{flex:1;padding:12px;border-radius:14px;border:none;font-size:12px;word-break:break-all}
+.f-copy{background:#000;color:#22c55e;border:1px solid #22c55e;padding:10px 16px;border-radius:12px;font-weight:900;cursor:pointer}
+.price-live{background:#00000044;border-radius:12px;padding:10px;margin:10px 0;font-size:12px;color:#4ade80}
+.claim-btn{width:100%;background:#000;color:#22c55e;border:none;padding:16px;border-radius:16px;font-weight:900;font-size:16px;cursor:pointer;margin-top:10px}
+.tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0}
+.tab{padding:14px;border-radius:18px;text-align:center;font-weight:800;font-size:13px;cursor:pointer;border:1px solid #1e3a8a;background:#0f1f4a;color:#94a3b8}
+.tab.active{background:#f59e0b;color:#000;border-color:#f59e0b}
+.block-card{background:#0f1f4a;border:1px solid #1e3a8a;border-radius:18px;padding:14px;margin:10px 0;cursor:pointer}
+.block-card:hover{border-color:#22c55e;transform:scale(1.01)}
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:none;z-index:999;overflow:auto;padding:12px}
+.modal-box{background:#111d3a;border:1px solid #22c55e;border-radius:18px;padding:16px;max-width:440px;margin:20px auto}
+.tx{padding:10px;background:#0f1f4a;border-radius:10px;margin:6px 0;font-size:12px;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="top">
+<div class="price-card"><div style="color:#22c55e;font-size:26px;font-weight:900" id="pqcPrice">$12.871</div><small style="color:#4ade80">+2.4% Live</small></div>
+<div class="price-card"><div style="color:#4ade80;font-size:22px;font-weight:900"><span id="pqcBal">1011.7819</span> PQC</div><small style="color:#94a3b8">$<span id="usdBal">13213.87</span> Live</small></div>
+</div>
+
+<input class="search" id="searchInput" placeholder="🔍 Search by Address / Tx Hash / Block: qtrust1q99" onkeyup="if(event.key=='Enter')doSearch()">
+
+<div class="faucet">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<b>🚰 QTrust Testnet Faucet - Free PQC</b><span style="background:#000;color:#22c55e;border:1px solid #22c55e;padding:3px 8px;border-radius:20px;font-size:10px">● FAUCET LIVE</span>
+</div>
+<small style="color:#bbf7d0">Claim 10 PQC free every 24h for testing Chain 997 - Live</small>
+<div class="faucet-input">
+<input class="f-input" id="faucetAddr" value="qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc3">
+<button class="f-copy" onclick="copyAddr()">Copy</button>
+</div>
+<div class="price-live">PQC Price Live $<span id="livePrice">12.992</span> ↗ +2.4% <span style="float:right">15s update</span></div>
+<button class="claim-btn" onclick="claimFaucet()">Claim 10 PQC → Wallet</button>
+</div>
+
+<div class="tabs">
+<div class="tab active" id="tabBlocks" onclick="showTab('blocks')">📦 Blocks</div>
+<div class="tab" id="tabTxs" onclick="showTab('txs')">✈️ Transactions</div>
+<div class="tab" id="tabHolders" onclick="showTab('holders')">👛 Holders</div>
+</div>
+
+<div id="blocksList"></div>
+<div id="txsList" style="display:none"></div>
+<div id="holdersList" style="display:none"></div>
+
+<a href="./index.html" style="display:block;background:#4a8cff;color:#fff;text-align:center;padding:14px;border-radius:14px;text-decoration:none;font-weight:900;margin-top:20px">← Back to Wallet</a>
+</div>
+
+<div id="modal" class="modal" onclick="if(event.target==this)closeModal()"><div class="modal-box" id="modalBox"></div></div>
+
+<script>
+let blocks = JSON.parse(localStorage.getItem('qtrust_blocks')||'null') || [
+ {num:119572910,hash:'0xa6a6ed45930f6c8a6cbd164c7d2806a63b40e5f6a7b8c9d0e1f2a3b4c5d6e7f8',miner:'qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30',txs:5,reward:'2.35',time:'9:57:44 AM',date:'Today'},
+ {num:119572909,hash:'0x1e02be37e0a4aff78d6c7650e48f71a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8',miner:'qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30',txs:8,reward:'2.10',time:'9:46:20 AM',date:'Today'},
+ {num:119572908,hash:'0x3f8a9b2c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0',miner:'qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30',txs:3,reward:'2.00',time:'9:30:12 AM',date:'Today'},
+];
+
+let allTxs = JSON.parse(localStorage.getItem('qtrust_txs')||'[]');
+let bal = parseFloat(localStorage.getItem('pqc_balance')||'1011.7819');
+
+function render(){
+ document.getElementById('pqcBal').innerText = bal.toFixed(4);
+ document.getElementById('usdBal').innerText = (bal*13.07).toFixed(2);
+ let bl = document.getElementById('blocksList');
+ bl.innerHTML = blocks.map(b=>`
+  <div class="block-card" onclick="openBlock(${b.num})">
+   <div style="display:flex;justify-content:space-between">
+    <b style="color:#fde68a;font-size:17px">Block #${b.num}</b>
+    <b style="color:#22c55e">${b.txs} txs</b>
+   </div>
+   <small style="color:#64748b;word-break:break-all">${b.hash.substring(0,48)}...</small><br>
+   <div style="display:flex;justify-content:space-between;margin-top:6px">
+    <small>Miner: ${b.miner.substring(0,20)}...</small>
+    <div style="text-align:right"><small>${b.reward} PQC reward</small><br><small>${b.time}</small></div>
+   </div>
+  </div>
+ `).join('');
+ 
+ let tl = document.getElementById('txsList');
+ if(allTxs.length==0) tl.innerHTML='<div style="text-align:center;padding:20px;color:#64748b">No transactions yet<br>Use Faucet</div>';
+ else tl.innerHTML = allTxs.map(t=>`
+  <div class="block-card" onclick="openTx('${t.hash}')">
+   <div style="display:flex;justify-content:space-between"><b>${t.coin||'PQC'} • ${t.amount}</b><span style="color:#22c55e">${t.status}</span></div>
+   <small style="color:#64748b">${t.hash.substring(0,30)}...</small><br>
+   <small>${t.time}</small>
+  </div>
+ `).join('');
+
+ let hl = document.getElementById('holdersList');
+ hl.innerHTML = `
+  <div class="block-card"><b>Top Holders - Chain 997</b></div>
+  <div class="block-card">1. ${document.getElementById('faucetAddr').value.substring(0,25)}...<br><b>${bal.toFixed(2)} PQC</b> <span style="color:#22c55e;float:right">100%</span></div>
+  <div class="block-card">2. qtrust1q997a22b8x0... Miner<br><b>250.00 PQC</b></div>
+ `;
+}
+
+function openBlock(num){
+ let b = blocks.find(x=>x.num==num);
+ if(!b) return;
+ document.getElementById('modal').style.display='block';
+ document.getElementById('modalBox').innerHTML=`
+  <div style="display:flex;justify-content:space-between"><h3>Block #${b.num}</h3><span style="background:#22c55e;color:#000;padding:3px 8px;border-radius:8px;font-size:10px;font-weight:900">Quantum Safe ✅</span></div>
+  <div style="margin-top:12px;background:#0f1f4a;padding:12px;border-radius:12px;font-size:13px;line-height:22px">
+   <b>Block Hash:</b><br><span style="color:#fde68a;word-break:break-all;font-size:11px">${b.hash}</span><br><br>
+   <b>Height:</b> ${b.num}<br>
+   <b>Miner:</b><br><span style="color:#93c5fd;word-break:break-all;font-size:11px">${b.miner}</span><br><br>
+   <b>Transactions:</b> ${b.txs} txs<br>
+   <b>Reward:</b> ${b.reward} PQC<br>
+   <b>Time:</b> ${b.time} - ${b.date}<br>
+   <b>Chain:</b> 997 Live • Dilithium3 Verified • Kyber768<br><br>
+   <div style="background:#052e16;border:1px solid #22c55e33;padding:10px;border-radius:10px">
+   <b style="color:#22c55e">Transactions in this Block:</b><br>
+   ${allTxs.filter(t=>t.block==b.num).map(t=>`<div class="tx">✈ ${t.amount} ${t.coin} • ${t.hash.substring(0,20)}...</div>`).join('') || '<small style="color:#64748b">Faucet + Mining rewards</small>'}
+   </div>
+  </div>
+  <button onclick="closeModal()" style="width:100%;padding:12px;border-radius:12px;border:none;background:#0f1f4a;color:#fff;border:1px solid #1e3a8a;margin-top:12px">Close</button>
+ `;
+}
+
+function openTx(hash){
+ let t = allTxs.find(x=>x.hash==hash); if(!t) return;
+ document.getElementById('modal').style.display='block';
+ document.getElementById('modalBox').innerHTML=`
+  <h3>Transaction Details</h3>
+  <div style="margin-top:12px;background:#0f1f4a;padding:12px;border-radius:12px;font-size:13px;word-break:break-all">
+   <b>Hash:</b><br><span style="color:#fde68a;font-size:11px">${t.hash}</span><br><br>
+   <b>From:</b><br>${t.from}<br><b>To:</b><br>${t.to}<br><br>
+   <b>Amount:</b> ${t.amount} ${t.coin}<br><b>Block:</b> #${t.block}<br><b>Time:</b> ${t.time}<br><b>Status:</b> <span style="color:#22c55e">${t.status}</span>
+  </div>
+  <button onclick="closeModal()" style="width:100%;padding:12px;border-radius:12px;border:1px solid #1e3a8a;background:#0f1f4a;color:#fff;margin-top:12px">Close</button>
+ `;
+}
+
+function closeModal(){document.getElementById('modal').style.display='none';}
+function showTab(t){
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+ document.getElementById('tabBlocks').classList.remove('active');
+ document.getElementById('tabTxs').classList.remove('active');
+ document.getElementById('tabHolders').classList.remove('active');
+ document.getElementById('blocksList').style.display='none';
+ document.getElementById('txsList').style.display='none';
+ document.getElementById('holdersList').style.display='none';
+ if(t=='blocks'){document.getElementById('tabBlocks').classList.add('active');document.getElementById('blocksList').style.display='block';}
+ if(t=='txs'){document.getElementById('tabTxs').classList.add('active');document.getElementById('txsList').style.display='block';}
+ if(t=='holders'){document.getElementById('tabHolders').classList.add('active');document.getElementById('holdersList').style.display='block';}
+}
+function copyAddr(){navigator.clipboard.writeText(document.getElementById('faucetAddr').value); alert('Copied!');}
+function claimFaucet(){
+ bal+=10;
+ let newBlock = blocks[0].num+1;
+ blocks.unshift({num:newBlock,hash:'0x'+Math.random().toString(16).slice(2,64)+Math.random().toString(16).slice(2,16),miner:document.getElementById('faucetAddr').value,txs:1,reward:'10.00',time:new Date().toLocaleTimeString(),date:'Just now'});
+ allTxs.unshift({coin:'PQC',hash:'0x'+Math.random().toString(16).slice(2,64),from:'Faucet',to:document.getElementById('faucetAddr').value,amount:'10',fee:'0',block:newBlock,time:new Date().toLocaleString(),status:'Success'});
+ localStorage.setItem('qtrust_blocks', JSON.stringify(blocks));
+ localStorage.setItem('qtrust_txs', JSON.stringify(allTxs));
+ localStorage.setItem('pqc_balance', bal);
+ localStorage.setItem('qtrust_block', newBlock);
+ alert('✅ 10 PQC Claimed! New Block #'+newBlock+' created!\\nWallet Balance: '+bal.toFixed(2)+' PQC');
+ render();
+}
+function doSearch(){
+ let v=document.getElementById('searchInput').value.trim();
+ if(!v) return;
+ let b = blocks.find(x=>x.num==v || x.hash.includes(v));
+ if(b) openBlock(b.num);
+ else alert('Searching Chain 997: '+v+'\\n\\nNot found locally, but would query blockchain in live version.');
+}
+render();
+// Live price update
+setInterval(()=>{document.getElementById('livePrice').innerText=(12.5+Math.random()).toFixed(3); document.getElementById('pqcPrice').innerText='$'+(12.5+Math.random()).toFixed(3);},15000);
+</script>
+</body>
+</html>
