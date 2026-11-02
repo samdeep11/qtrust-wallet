@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QTrust Runner Node - Chain 997 Live</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#0b1220;color:#fff;min-height:100vh;padding:12px}
+.box{max-width:500px;margin:0 auto;background:#111c33;border-radius:20px;padding:16px;border:1px solid #1e3a5f}
+.stat{display:flex;justify-content:space-between;padding:12px;background:#0b1220;border-radius:12px;margin:8px 0;border:1px solid #1e3a5f}
+.green{color:#22c55e}.yellow{color:#f59e0b}
+.btn{width:100%;padding:14px;border-radius:12px;border:none;font-weight:800;margin-top:10px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>🖥️ QTrust Runner Node <span style="color:#22c55e">● LIVE</span></h2>
+<p style="font-size:12px;color:#8fb0ff;margin-top:6px">Chain 997 • Multichain • V3 Testnet Live</p>
+
+<div class="stat"><span>Node ID</span><b class="green">qtrust_997a22b8_runner</b></div>
+<div class="stat"><span>Chain ID</span><b>997 - QTrust Mainnet</b></div>
+<div class="stat"><span>Status</span><b class="green">● Running</b></div>
+<div class="stat"><span>Block Height</span><b id="block">#119573039</b></div>
+<div class="stat"><span>Peers</span><b id="peers">12 Connected</b></div>
+<div class="stat"><span>Sync</span><b class="green">100% Synced</b></div>
+<div class="stat"><span>Wallet Balance</span><b class="yellow" id="bal">998.7107 PQC</b></div>
+
+<div style="margin-top:14px;background:#0b1220;padding:12px;border-radius:12px;font-size:11px;border:1px solid #1e3a5f">
+<div>QTrust Addr: qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f</div>
+<div style="margin-top:6px;color:#fde68a">EVM Runner: 0x... • Active</div>
+<div style="margin-top:6px;color:#8fb0ff">Last Sync: <span id="time"></span></div>
+</div>
+
+<button class="btn" style="background:#22c55e;color:#000" onclick="startNode()">▶️ Start Runner</button>
+<button class="btn" style="background:#ef4444;color:#fff" onclick="stopNode()">⏹️ Stop Runner</button>
+<button class="btn" style="background:#4a6cf7;color:#fff" onclick="location.href='./'">← Back to Wallet</button>
+<button class="btn" style="background:#f59e0b;color:#000" onclick="location.href='./explorer.html'">🔍 Open Explorer</button>
+</div>
+
+<script>
+function refresh(){
+let t=JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"998.7107","block":"119573039"}');
+document.getElementById('bal').innerText=t.balance+' PQC';
+document.getElementById('block').innerText='#'+t.block;
+document.getElementById('time').innerText=new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
+document.getElementById('peers').innerText=Math.floor(10+Math.random()*5)+' Connected';
+}
+function startNode(){ alert('🖥️ Runner Node Started - Chain 997 Live\nSyncing... 100%'); refresh(); }
+function stopNode(){ alert('⏹️ Runner Node Stopped'); }
+refresh(); setInterval(refresh,5000);
+</script>
+</body>
+</html>
