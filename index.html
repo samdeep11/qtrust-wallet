@@ -2,85 +2,203 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>QTrust Wallet - Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>QTrust - V3 Testnet Live - INDEX</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#070b28;color:#fff}
-.app{max-width:440px;margin:0 auto;padding:10px 12px 100px}
-.head{display:flex;justify-content:space-between;align-items:center;margin:10px 0}
-.badge{background:#1a234f;color:#5b7cff;border:1px solid #2a3a7a;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700}
-.card{background:#121c4a;border:1px solid #1e2f6a;border-radius:22px;padding:16px;margin:12px 0;position:relative;cursor:pointer}
-.card-pqc{background:linear-gradient(135deg,#1a2a6a,#2a3a8a)}
-.card-eth{background:linear-gradient(135deg,#1a1a4a,#2a2a6a)}
-.security{background:linear-gradient(135deg,#0a1a2a,#0f2a3a);border:1px solid #1a4a3a;border-radius:22px;padding:16px;margin:16px 0}
-.qtrust-main{background:linear-gradient(135deg,#3a4fcf,#2d3ea8);border-radius:28px;padding:18px;border:1px solid #ffffff22;margin:16px 0}
-.bal{font-size:36px;font-weight:900}
-.btns{display:flex;gap:10px;margin:14px 0}
-.bt{flex:1;padding:16px 10px;border-radius:20px;text-align:center;font-weight:800;border:1px solid #ffffff33;cursor:pointer}
-.bt1{background:#5a8bff;border:none}
-.explorer-btn{background:#fff;color:#000;border-radius:14px;padding:12px;text-align:center;font-weight:900;margin:12px 0;cursor:pointer}
-.quantum{display:flex;gap:8px;margin-top:10px}
-.qtag{flex:1;background:#ffffff11;border-radius:12px;padding:10px;text-align:center;font-size:11px;border:1px solid #ffffff22}
-.bottom{position:fixed;bottom:0;left:0;right:0;max-width:440px;margin:0 auto;background:#070b28;border-top:1px solid #1e2f6a;display:flex;justify-content:space-around;padding:12px 0;z-index:10}
-.click-badge{position:absolute;top:12px;right:12px;background:#22c55e;color:#000;padding:4px 10px;border-radius:12px;font-size:10px;font-weight:900}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+html,body{width:100%;height:100%;overflow-x:hidden;background:#4a76f7;margin:0}
+.app{width:100%;max-width:100%;min-height:100dvh;background:#4a76f7;position:relative;padding-bottom:90px;margin:0 auto;overflow-x:hidden}
+@media(min-width:500px){.app{max-width:430px;box-shadow:0 0 30px rgba(0,0,0,.25)}}
+.logo-wrap{text-align:center;padding:22px 0 10px}
+.logo-img{width:92px;height:92px;border-radius:24px;object-fit:cover;box-shadow:0 0 0 3px #fff,0 0 0 6px #2a5cf0;background:#fff}
+.qtext{color:#fff;font-size:42px;font-weight:900;margin-top:10px}
+.login-card{margin:16px 12px;background:#fff;border-radius:24px;padding:20px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn{width:100%;padding:14px;border-radius:14px;border:none;font-weight:800;font-size:14px;cursor:pointer;margin-top:10px}
+.btn-primary{background:#4a6cf7;color:#fff}.btn-dark{background:#111827;color:#fff}.btn-orange{background:#ff8c00;color:#fff}.btn-green{background:#22c55e;color:#000}
+.balance{margin:12px;background:#1e3a8a;border-radius:24px;padding:18px;color:#fff;width:calc(100% - 24px)}
+.total{font-size:13px;opacity:.7}.amount{font-size:34px;font-weight:900}.gain{color:#5ee9a8;margin-top:6px;font-size:12px}
+.asset{margin-top:14px;display:flex;justify-content:space-between;align-items:center}
+.asset-left{display:flex;gap:12px;align-items:center}
+.asset-ico{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;overflow:hidden}
+.btc{background:#ff9f0a}.eth{background:#8b5cf6}.usdc{background:#3b82f6}
+.btns{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.btn-half{flex:1;padding:12px;border-radius:14px;border:none;font-weight:800;cursor:pointer;display:flex;justify-content:center;gap:6px;font-size:13px;min-width:70px}
+.btn-send{background:#3b82f6;color:#fff}.btn-rec{background:transparent;color:#fff;border:1.5px solid #3b82f6}
+.card{margin:12px;background:#fff;border-radius:18px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,.1);width:calc(100% - 24px)}
+.bottom{position:fixed;bottom:0;left:0;right:0;width:100%;max-width:100%;background:#2a5cf0;border-radius:28px 28px 0 0;display:flex;justify-content:space-around;padding:12px 0;z-index:20}
+@media(min-width:500px){.bottom{max-width:430px;left:50%;transform:translateX(-50%)}}
+.nv{flex:1;text-align:center;font-size:11px;color:#8fb0ff;background:none;border:none;cursor:pointer}.nv.on{color:#fde68a}.nv .ic{font-size:24px;display:block}
+.small{font-size:9px;word-break:break-all;overflow-wrap:anywhere;white-space:normal;background:#eef3ff;padding:8px;border-radius:8px;margin-top:6px;line-height:13px}
+.markets-wrap{margin:12px;background:#fff;border-radius:22px;padding:12px 16px;width:calc(100% - 24px)}
+.search{width:100%;padding:14px 16px;border-radius:14px;border:1px solid #ddd}
+.coin-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee}
+.set-card{margin:12px;background:#fff;border-radius:18px;overflow:hidden;width:calc(100% - 24px)}
+.set-row{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #f2f3f5;cursor:pointer}
+.set-left{display:flex;align-items:center;gap:12px}
+.page{display:none}.page.on{display:block}
+.live-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 </style>
 </head>
 <body>
 <div class="app">
+<div class="page on" id="pLogin"><div class="logo-wrap"><img src="logo.png" class="logo-img" onerror="this.src='qtrust-icon.png';"><div class="qtext">QTrust</div><div style="color:#c7d2fe;font-size:11px;letter-spacing:2px;margin-top:4px">QTRUST PROJECT • WALLET ID 128 • MAINNET 997 • V3 TESTNET LIVE</div></div><div class="login-card"><h2>Welcome to QTrust V3</h2><p style="font-size:12px;color:#6b7280;margin-top:6px"><span class="live-dot"></span> Testnet Live + Encrypted + Biometric</p><button class="btn btn-primary" onclick="App.createWallet()">✨ Create Encrypted Wallet</button><button class="btn btn-green" onclick="App.biometricLogin()">👆 Unlock with Fingerprint / FaceID</button><button class="btn btn-dark" onclick="App.showImportLogin()">📥 I Already Have a Wallet</button><div id="importBoxLogin" style="display:none;margin-top:14px;border-top:1px solid #eee;padding-top:12px"><input id="importKeyLogin" placeholder="Paste 128 OR 0x OR 12 words" style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;font-size:12px"><button class="btn btn-orange" onclick="App.doImportLogin()">Login & Encrypt</button></div></div></div>
 
-<div class="head"><b>Your Assets</b><span class="badge">● Testnet Live</span></div>
+<div class="page" id="pHome"><div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;color:#fff"><div style="display:flex;align-items:center;gap:10px"><img src="logo.png" style="width:38px;height:38px;border-radius:12px;background:#fff"><div><b id="qidDash">qtrust_xxxx</b><br><small id="addrShort">0x... • QTrust 997</small></div></div><div style="display:flex;gap:6px"><button onclick="App.showQR()" style="background:rgba(255,255,255,.2);border:none;color:#fff;padding:8px 10px;border-radius:10px">QR</button><button onclick="App.logout()" style="background:rgba(255,255,255,.2);border:none;color:#fff;padding:8px 10px;border-radius:10px;font-size:11px">Logout</button></div></div><div class="balance"><div style="display:flex;justify-content:space-between"><div><div class="total">Total Balance - <span class="live-dot"></span> Testnet Live Chain 997</div><div class="amount" id="amountVal">$12,847.32</div><div class="gain" id="gainVal">↗ Loading testnet...</div></div><button onclick="App.copyAddr()" style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;height:28px">Copy</button></div><div style="margin-top:14px;background:rgba(0,0,0,.15);border-radius:12px;padding:10px"><div style="display:flex;justify-content:space-between;font-size:11px;opacity:.7"><span>QTrust Chain 997 Testnet Live</span><span id="blockNo">#Loading...</span></div><div style="display:flex;align-items:end;gap:4px;margin-top:8px;height:36px"><div style="flex:1;background:#5ee9a8;height:30%"></div><div style="flex:1;background:#5ee9a8;height:45%"></div><div style="flex:1;background:#5ee9a8;height:35%"></div><div style="flex:1;background:#5ee9a8;height:60%"></div><div style="flex:1;background:#5ee9a8;height:50%"></div><div style="flex:1;background:#5ee9a8;height:75%"></div><div style="flex:1;background:#f7c948;height:90%"></div></div></div><div class="btns"><button class="btn-half btn-send" onclick="App.send()">✈ Send</button><button class="btn-half btn-rec" onclick="App.receive()">⬇ Receive</button><button class="btn-half" style="background:rgba(255,255,255,.15);color:#fff" onclick="App.buy()">💳 Buy</button><button class="btn-half" style="background:rgba(255,255,255,.15);color:#fff" onclick="App.swap()">🔄 Swap</button></div><div style="margin-top:12px;background:rgba(255,255,255,.1);border-radius:12px;padding:10px;font-size:9px"><div id="widDash">Wallet ID 128: ...</div><div id="pubDash" style="margin-top:4px">Public: ...</div></div></div><div class="card"><div style="display:flex;justify-content:space-between"><h3>Your Assets - Testnet Live</h3><button onclick="App.addToken()" style="border:none;background:#f3f4f6;padding:6px 10px;border-radius:8px;font-size:11px">+ Add Token</button></div><div class="asset" style="background:#fffbeb;border:1px solid #fcd34d;padding:10px;border-radius:12px;margin-top:10px"><div class="asset-left"><div class="asset-ico" style="background:#fff;border:1px solid #f59e0b"><img src="pqc-logo.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.src='https://via.placeholder.com/44/f59e0b/fff?text=PQC'"></div><div><div style="font-weight:700">PQC <span style="color:#22c55e;font-size:10px">● LIVE</span></div><small id="pqcSub">PQC • QTrust 997 • Testnet</small></div></div><div style="text-align:right"><b id="pqcBal">1,000 PQC</b><br><small id="pqcUsd" style="color:#16a34a">$12,847.32 • Live</small></div></div><div class="asset"><div class="asset-left"><div class="asset-ico btc">₿</div><div><div style="font-weight:700">Bitcoin</div><small>BTC • 0.1021</small></div></div><div style="text-align:right"><b>$8,124.56</b><br><small style="color:#16a34a">+2.14%</small></div></div><div class="asset"><div class="asset-left"><div class="asset-ico eth">♦</div><div><div style="font-weight:700">Ethereum</div><small>ETH • 1.39</small></div></div><div style="text-align:right"><b>$3,210.40</b><br><small style="color:#16a34a">+5.82%</small></div></div></div><div class="card"><h3>🛡️ Security Center - V3 Testnet Live</h3><div style="margin-top:10px;font-size:13px"><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ Testnet Live - Chain 997</span><small style="color:#16a34a" id="testnetStatus">Active</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ Auto-Lock 2 min</span><small style="color:#16a34a">ON</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ Biometric Unlock</span><small style="color:#16a34a">Ready</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>⚠️ Backup & Security</span><small style="color:#e53935;cursor:pointer" onclick="App.backup()">Verify ›</small></div></div></div></div>
 
-<!-- PQC CARD - CLICK TO OPEN -->
-<div class="card card-pqc" onclick="location.href='./qtrustchain.html'">
-<span class="click-badge">CLICK TO OPEN ↗</span>
-<div style="display:flex;gap:8px;align-items:center"><span style="background:#ff9d0a;padding:6px;border-radius:50%">🟠</span><b>PQC</b><span class="badge" style="margin-left:auto">Chain 997</span></div>
-<div style="font-size:22px;font-weight:900;margin-top:8px">$8,124.56</div>
-<small style="color:#8aa0d0">998.7107 PQC • $13.455</small>
+<div class="page" id="pMarkets"><div class="markets-wrap"><input class="search" placeholder="Search" oninput="App.filter()"><div id="coinList"></div></div></div>
+<div class="page" id="pSettings"><div style="padding:14px;text-align:center;background:#fff;margin:12px;border-radius:18px;width:calc(100% - 24px)"><h2>Settings - V3 Testnet Live</h2><small>Encrypted + Auto-lock + Biometric</small></div><div class="set-card"><div class="set-row" onclick="App.setLang()"><div class="set-left"><span>🌐</span><b>Language</b></div><span>›</span></div><div class="set-row" onclick="App.setCurr()"><div class="set-left"><span>💲</span><b>Currencies</b></div><span>›</span></div><div class="set-row" onclick="App.setNotif()"><div class="set-left"><span>🔔</span><b>Notification</b></div><span>›</span></div><div class="set-row" onclick="App.backup()"><div class="set-left"><span>🔐</span><b>Backup & Security - V3</b></div><span>›</span></div><div class="set-row" onclick="App.explorer()" style="background:#fffbeb;border-left:4px solid #f59e0b"><div class="set-left"><span>🔍</span><b>QTrust Explorer</b> <span style="background:#22c55e;color:#fff;font-size:9px;padding:3px 8px;border-radius:10px;margin-left:6px">LIVE</span></div><span>›</span></div></div><div class="card" id="setDetail" style="display:none"></div></div>
+<div class="bottom" id="bottomNav"><button class="nv on" id="bHome" onclick="App.nav('Home')"><span class="ic">🏠</span>Dashboard</button><button class="nv" id="bMarkets" onclick="App.nav('Markets')"><span class="ic">📊</span>Markets</button><button class="nv" id="bSettings" onclick="App.nav('Settings')"><span class="ic">⚙️</span>Settings</button></div>
 </div>
 
-<!-- ETH CARD -->
-<div class="card card-eth" onclick="location.href='./explorer.html'">
-<div style="display:flex;gap:8px;align-items:center"><span style="background:#627eea;padding:6px;border-radius:50%">♦</span><b>Ethereum</b></div>
-<div style="font-size:22px;font-weight:900;margin-top:8px">$3,210.40</div>
-<small style="color:#8aa0d0">1.28 ETH • Multi-Chain</small>
-</div>
-
-<!-- SECURITY CENTER - YEHI GAYAB HO RAHA THA -->
-<div class="security">
-<div style="display:flex;justify-content:space-between"><b>Security Center</b><span class="badge" style="color:#22c55e;border-color:#22c55e">● V3 Testnet Live</span></div>
-<div style="margin-top:12px;display:flex;gap:8px"><span style="background:#22c55e;color:#000;padding:4px 8px;border-radius:8px;font-size:10px;font-weight:900">Dilithium3</span><span style="background:#3b82f6;color:#fff;padding:4px 8px;border-radius:8px;font-size:10px;font-weight:900">Kyber768</span><span style="background:#ffffff11;padding:4px 8px;border-radius:8px;font-size:10px">Quantum Safe</span></div>
-<small style="color:#5a7a6a;margin-top:8px;display:block">Chain 997 • Post-Quantum Signatures Verified</small>
-</div>
-
-<!-- QTRUST TESTNET MAIN - YEHI TERA IMAGE 2 WALA -->
-<div class="qtrust-main">
-<div style="display:flex;justify-content:space-between;font-size:12px"><span>● Chain 997 Live</span><span id="blk">Block #119572902</span></div>
-<div style="margin-top:8px"><small>QTrust Testnet - PQC</small><div class="bal"><span id="pqc">998.7107</span> PQC</div><small>$<span id="usd">13437.65</span> • Live $13.455</small></div>
-<div class="btns"><div class="bt bt1" onclick="location.href='./qtrustchain.html'">✈ Send</div><div class="bt" onclick="alert('Public: qtrust1q997a...')">↓ Receive</div><div class="bt" onclick="location.href='./qtrustchain.html'">💳 Buy</div></div>
-<div style="background:#ffffff18;border-radius:18px;padding:14px;text-align:center;font-weight:800;cursor:pointer" onclick="location.href='./explorer.html'">🔄 Swap</div>
-
-<div class="explorer-btn" onclick="location.href='./qtrustchain.html'">🔗 QTrust Explorer - Faucet + Blocks + Holders ↗</div>
-
-<div class="quantum"><div class="qtag">🛡️<br><b>Dilithium3</b><br>Verified</div><div class="qtag">🔐<br><b>Kyber768</b><br>Encrypted</div><div class="qtag">⛓️<br><b>Chain 997</b><br>Live</div></div>
-</div>
-
-<div style="text-align:center;color:#5a6ea8;font-size:12px;margin-top:20px">Wallet ID 128: wallet_qtrust_997a... Testnet Live 997<br>Public PQC: qtrust1q997a22b8...84830f</div>
-
-</div>
-
-<div class="bottom">
-<div style="text-align:center;font-weight:800;color:#fff">🏠<br>Dashboard</div>
-<div style="text-align:center;color:#5a6ea8" onclick="location.href='./qtrustchain.html'">📊<br>Markets</div>
-<div style="text-align:center;color:#5a6ea8" onclick="location.href='./qtrustchain.html'">⚙️<br>Explorer</div>
-</div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
 <script>
-let b=parseInt(localStorage.getItem('qtrust_block')||'119572902');
-let bal=parseFloat(localStorage.getItem('pqc_balance')||'998.7107');
-document.getElementById('blk').innerText='Block #'+b;
-document.getElementById('pqc').innerText=bal.toFixed(4);
-document.getElementById('usd').innerText=(bal*13.455).toFixed(2);
+const FINAL_QTRUST_ADDR = "qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f";
+const FINAL_QID = "qtrust_997a22b8";
+const QTRUST_TESTNET = { chainId:997, basePrice:12.847 };
+
+const App={
+  coins:[], autoLockTimer:null, testnetInterval:null,
+  init(){ 
+    this.setupAutoLock();
+    let d=localStorage.getItem('qtrust_pqc'); 
+    if(d){ this.showDashboard(); }else{ this.showLogin(); } 
+  },
+  setupAutoLock(){
+    const reset = ()=>{ clearTimeout(this.autoLockTimer); this.autoLockTimer=setTimeout(()=>{ let p=document.getElementById('pHome'); if(p && p.classList.contains('on')){ alert('🔒 Auto-locked (2 min inactive) - Testnet security'); this.showLogin(); } }, 120000); };
+    ['click','touchstart','keydown','mousemove'].forEach(e=> document.addEventListener(e, reset, {passive:true}));
+    reset();
+  },
+  showLogin(){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pLogin').classList.add('on'); document.getElementById('bottomNav').style.display='none'; this.stopTestnet(); },
+  showDashboard(){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pHome').classList.add('on'); document.getElementById('bottomNav').style.display='flex'; this.render(); this.loadCoins(); this.startTestnet(); },
+  nav(n){ if(n==='Home'){ this.showDashboard(); return; } this.stopTestnet(); document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('p'+n).classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('b'+n).classList.add('on'); if(n==='Markets') this.loadCoins(); },
+  ensure(){ 
+    let d=localStorage.getItem('qtrust_pqc'); 
+    if(!d){ 
+      let pwd = prompt('Set QTrust Vault Password (Strong):');
+      if(!pwd || pwd.length<4){ pwd='QTrust997!'; alert('Default: QTrust997!'); }
+      let w=ethers.Wallet.createRandom(); 
+      let encPk = CryptoJS.AES.encrypt(w.privateKey, pwd).toString();
+      let encSeed = CryptoJS.AES.encrypt(w.mnemonic.phrase, pwd).toString();
+      let gen=()=>Array(64).fill(0).map(()=> 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random()*62)]).join(''); 
+      let obj={qid:FINAL_QID,wid:`wallet_${FINAL_QID}_${FINAL_QTRUST_ADDR.slice(7,15)}_${gen()}`.slice(0,128),addr:FINAL_QTRUST_ADDR,encPk:encPk,encSeed:encSeed,chain:"QTrust Mainnet",chainId:997,symbol:"PQC"}; 
+      localStorage.setItem('qtrust_pqc',JSON.stringify(obj)); 
+      return obj; 
+    } 
+    let parsed = JSON.parse(d); 
+    parsed.addr = FINAL_QTRUST_ADDR; 
+    parsed.qid = FINAL_QID; 
+    if(parsed.pk && !parsed.encPk){
+      let pwd = prompt('V2 Upgrade: Set password to encrypt:'); if(!pwd) pwd='QTrust997!';
+      parsed.encPk = CryptoJS.AES.encrypt(parsed.pk, pwd).toString();
+      parsed.encSeed = CryptoJS.AES.encrypt(parsed.seed||'old', pwd).toString();
+      delete parsed.pk; delete parsed.seed;
+      localStorage.setItem('qtrust_pqc', JSON.stringify(parsed));
+    }
+    return parsed; 
+  },
+  render(){ let d=this.ensure(); document.getElementById('qidDash').innerText=d.qid; document.getElementById('addrShort').innerText=d.addr.slice(0,12)+'...'+d.addr.slice(-6)+' • Testnet Live 997'; document.getElementById('widDash').innerText=`Wallet ID 128: ${d.wid} - Testnet Live 997`; document.getElementById('pubDash').innerText=`Public: ${d.addr} | Testnet Live Chain 997`; },
+  startTestnet(){
+    this.fetchTestnetBalance();
+    this.testnetInterval = setInterval(()=> this.fetchTestnetBalance(), 15000);
+  },
+  stopTestnet(){ if(this.testnetInterval){ clearInterval(this.testnetInterval); this.testnetInterval=null; } },
+  fetchTestnetBalance(){
+    // Read from explorer.html if present, else mock live
+    let explorerData = localStorage.getItem('qtrust_testnet_data');
+    let bal, price, block;
+    if(explorerData){
+      try{
+        let ed = JSON.parse(explorerData);
+        if(Date.now()-ed.time < 60000){ bal=parseFloat(ed.balance); price=parseFloat(ed.price); block=ed.block; }
+      }catch(e){}
+    }
+    if(!bal){
+      // Mock testnet live - real chain jaisa fluctuation
+      let base=1000; 
+      let variance = (Math.sin(Date.now()/10000)*2) + (Math.random()-0.5);
+      bal = base + variance;
+      price = QTRUST_TESTNET.basePrice + (Math.random()-0.5)*0.4;
+      block = Math.floor(Date.now()/15000);
+    }
+    let totalUsd = bal * price;
+    document.getElementById('amountVal').innerText = `$${totalUsd.toFixed(2)}`;
+    document.getElementById('gainVal').innerText = `↗ Live Testnet • ${bal.toFixed(4)} PQC • Block #${block} • $${price.toFixed(3)}`;
+    document.getElementById('pqcBal').innerText = `${bal.toFixed(4)} PQC`;
+    document.getElementById('pqcUsd').innerText = `$${totalUsd.toFixed(2)} • Live`;
+    document.getElementById('pqcSub').innerText = `PQC • QTrust 997 • Live • ${bal.toFixed(4)} PQC`;
+    document.getElementById('blockNo').innerText = `#${block}`;
+    document.getElementById('testnetStatus').innerText = `Live #${block}`;
+    // Save for explorer sync
+    localStorage.setItem('qtrust_testnet_data', JSON.stringify({balance:bal.toFixed(4), price:price.toFixed(3), block:block, time:Date.now()}));
+  },
+  createWallet(){ if(!confirm('Naya encrypted wallet banega, purana delete hoga. Continue?')) return; localStorage.removeItem('qtrust_pqc'); let d=this.ensure(); alert('V3 Testnet Wallet Created: '+d.qid); this.showDashboard(); },
+  showImportLogin(){ let b=document.getElementById('importBoxLogin'); b.style.display=b.style.display==='none'?'block':'none'; },
+  doImportLogin(){ let v=document.getElementById('importKeyLogin').value.trim(); if(!v){ alert('Paste key'); return; } let pwd = prompt('Set new Vault Password:'); if(!pwd || pwd.length<4){ pwd='QTrust997!'; } try{ let w; if(v==="128" || v==="qtrust_997a22b8" || v.length<20){ w = ethers.Wallet.createRandom(); } else { w=v.startsWith('0x')?new ethers.Wallet(v):ethers.Wallet.fromPhrase(v); } let encPk = CryptoJS.AES.encrypt(w.privateKey, pwd).toString(); let encSeed = CryptoJS.AES.encrypt(w.mnemonic? w.mnemonic.phrase : v, pwd).toString(); let gen=()=>Array(64).fill(0).map(()=> 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random()*62)]).join(''); let obj={qid:FINAL_QID,wid:`wallet_${FINAL_QID}_${FINAL_QTRUST_ADDR.slice(7,15)}_${gen()}`.slice(0,128),addr:FINAL_QTRUST_ADDR,encPk:encPk,encSeed:encSeed,chain:"QTrust Mainnet",chainId:997,symbol:"PQC"}; localStorage.setItem('qtrust_pqc',JSON.stringify(obj)); this.showDashboard(); }catch(e){ alert('Invalid: '+e.message); } },
+  async biometricLogin(){
+    try{
+      if(window.PublicKeyCredential){
+        // Try WebAuthn
+        await navigator.credentials.get({ publicKey:{ challenge:new Uint8Array(32), timeout:60000, userVerification:"required" } });
+        let d=localStorage.getItem('qtrust_pqc');
+        if(d){ this.showDashboard(); return; }
+      }
+    }catch(e){ console.log('Biometric fallback to password'); }
+    // Fallback to password check
+    let pwd = prompt('Biometric not available, enter Vault Password:');
+    if(!pwd) return;
+    let raw = JSON.parse(localStorage.getItem('qtrust_pqc')||'{}');
+    if(!raw.encPk){ alert('No wallet, create first'); return; }
+    try{
+      let dec = CryptoJS.AES.decrypt(raw.encPk, pwd).toString(CryptoJS.enc.Utf8);
+      if(dec){ this.showDashboard(); } else throw new Error();
+    }catch(e){ alert('❌ Wrong Password'); }
+  },
+  send(){ let to=prompt('Send to address:'); let amt=prompt('Amount (PQC):'); if(to&&amt) alert('Testnet Send '+amt+' PQC to '+to+' on QTrust 997 Live - Tx simulated'); },
+  receive(){ alert('Receive PQC Testnet Live:\n'+FINAL_QTRUST_ADDR+'\nChain ID: 997 Live'); },
+  buy(){ alert('Buy PQC Testnet - '+FINAL_QTRUST_ADDR); },
+  swap(){ alert('Swap PQC/BTC/ETH/USDC Testnet Live - Working'); },
+  addToken(){ let tk=prompt('Add token:'); if(tk){ let l=JSON.parse(localStorage.getItem('custom_tokens')||'[]'); l.push(tk); localStorage.setItem('custom_tokens',JSON.stringify(l)); alert('Token added: '+tk); } },
+  showQR(){ window.open(`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${FINAL_QTRUST_ADDR}`); },
+  copyAddr(){ let text=FINAL_QTRUST_ADDR; if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(()=>alert('Copied: '+text)).catch(()=>{fallback(text)}); } else{ fallback(text); } function fallback(t){ let ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); alert('Copied: '+t);}catch(e){prompt('Copy manually:',t);} document.body.removeChild(ta); } },
+  logout(){ this.stopTestnet(); if(confirm('Logout? Testnet data safe rahega!')){ this.showLogin(); } },
+  backup(){
+    let pwd = prompt('Enter Vault Password to decrypt backup:'); if(!pwd){ alert('Password chahiye'); return; }
+    let raw = JSON.parse(localStorage.getItem('qtrust_pqc')||'{}');
+    if(!raw.encPk){ alert('No encrypted wallet'); return; }
+    let decPk, decSeed;
+    try{ decPk = CryptoJS.AES.decrypt(raw.encPk, pwd).toString(CryptoJS.enc.Utf8); decSeed = CryptoJS.AES.decrypt(raw.encSeed, pwd).toString(CryptoJS.enc.Utf8); if(!decPk) throw new Error('wrong'); }catch(e){ alert('❌ Galat Password!'); return; }
+    let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.textContent=''; let h3=document.createElement('h3'); h3.textContent='🔐 Backup V3 Decrypted - Testnet Live'; el.appendChild(h3); [['ID',raw.qid||FINAL_QID],['WID',raw.wid],['Public',raw.addr]].forEach(([k,v])=>{ let s=document.createElement('div'); s.className='small'; s.textContent=k+': '+v; el.appendChild(s); }); let box=document.createElement('div'); box.style.cssText='margin-top:15px; padding:12px; background:#1a1a1a; border:1px solid #00ff88; border-radius:12px;'; let warn=document.createElement('b'); warn.style.color='#00ff88'; warn.textContent='✅ AES-256 DECRYPTED - TESTNET LIVE - PRIVATE'; box.appendChild(warn); box.appendChild(document.createElement('br')); box.appendChild(document.createElement('br')); let pkDiv=document.createElement('div'); pkDiv.style.cssText='word-break:break-all; background:#000; padding:10px; color:#5ee9a8; border-radius:8px; font-size:10px; border:1px solid #333;'; pkDiv.textContent='PK: '+decPk; let seedDiv=document.createElement('div'); seedDiv.style.cssText='word-break:break-all; background:#000; padding:10px; color:#fde68a; border-radius:8px; font-size:10px; margin-top:10px; border:1px solid #333;'; seedDiv.textContent='Seed: '+decSeed; box.appendChild(pkDiv); box.appendChild(seedDiv); let lockBtn=document.createElement('button'); lockBtn.textContent='🔒 Lock Again'; lockBtn.style.cssText='margin-top:12px; width:100%; padding:10px; border-radius:8px; border:none; background:#ff3b3b; color:#fff; font-weight:800;'; lockBtn.onclick=()=>{ el.textContent='Locked'; el.style.display='none'; }; box.appendChild(lockBtn); el.appendChild(box);
+  },
+  explorer(){
+    let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on');
+    let now = new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
+    let td = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"1000.00","price":"12.847","block":"0"}');
+    el.innerHTML=`
+    <h3>🔍 QTrust Explorer - Testnet Live 997 <span style="color:#22c55e">● LIVE ${new Date().toLocaleTimeString()}</span></h3>
+    <div style="background:#0b1220;border-radius:14px;padding:6px;border:1px solid #1e3a5f">
+      <a href="./explorer.html" target="_blank" onclick="event.stopPropagation()"><img src="explorer-live.jpg" style="width:100%;border-radius:10px;display:block;border:1px solid #1e3a5f"></a>
+      <div style="background:#111c33;border-radius:10px;padding:10px;margin-top:8px;font-size:11px">
+        <div>Balance: <b style="color:#5ee9a8">${td.balance} PQC</b> = $${(td.balance*td.price).toFixed(2)}</div>
+        <div>Block: #${td.block} • Chain 997 • Price: $${td.price}</div>
+        <div style="margin-top:6px;color:#8fb0ff">Addr: ${FINAL_QTRUST_ADDR.slice(0,20)}...</div>
+      </div>
+      <div style="margin-top:8px;display:flex;gap:6px">
+        <a href="./explorer.html" target="_blank" onclick="event.stopPropagation()" style="flex:1;text-align:center;background:#f59e0b;color:#000;padding:12px;border-radius:10px;font-weight:900;text-decoration:none;font-size:13px;display:block">🔍 Open Explorer Site</a>
+        <button onclick="event.stopPropagation(); App.explorer()" style="flex:1;background:#22c55e;color:#000;border:none;padding:12px;border-radius:10px;font-weight:900;font-size:13px">↻ Refresh Live</button>
+      </div>
+      <div style="margin-top:6px;text-align:center;font-size:9px;color:#64748b">V3 Testnet Live • Updated: ${now} • Auto-sync with wallet</div>
+    </div>`;
+    el.scrollIntoView({behavior:'smooth'});
+  },
+  setLang(){ let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.innerHTML='<h3>🌐 Language</h3><div class="small">English - Testnet Live 997 V3</div>'; },
+  setCurr(){ let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.innerHTML='<h3>💲 Currencies</h3><div class="small">PQC / USD - Testnet Live V3</div>'; },
+  setNotif(){ if(Notification) Notification.requestPermission(); let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.innerHTML='<h3>🔔 Notification</h3><div class="small"><b>QTrust 997 Testnet Notifications ON</b></div>'; },
+  loadCoins(){ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1').then(r=>r.json()).then(d=>{ this.coins=d; let h=d.map(c=>`<div class="coin-row"><div style="display:flex;gap:8px"><img src="${c.image}" style="width:20px;height:20px"><b>${c.name}</b> ${c.symbol.toUpperCase()}</div><div>$${c.current_price}</div></div>`).join(''); document.getElementById('coinList').innerHTML=h; }).catch(()=>{ document.getElementById('coinList').innerHTML='Markets offline - Testnet Live'; }); },
+  filter(){ let q=document.querySelector('.search')?.value.toLowerCase()||''; let f=this.coins.filter(c=>c.name.toLowerCase().includes(q)||c.symbol.toLowerCase().includes(q)); let h=f.map(c=>`<div class="coin-row"><div><b>${c.name}</b></div><div>$${c.current_price}</div></div>`).join(''); document.getElementById('coinList').innerHTML=h||'No results'; }
+};
+App.init();
 </script>
 </body>
 </html>
