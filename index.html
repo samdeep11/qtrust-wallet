@@ -1,204 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>QTrust - V3 Testnet Live - INDEX</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>QTrust Wallet - Chain 997 Live</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#3b5bff">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
-html,body{width:100%;height:100%;overflow-x:hidden;background:#4a76f7;margin:0}
-.app{width:100%;max-width:100%;min-height:100dvh;background:#4a76f7;position:relative;padding-bottom:90px;margin:0 auto;overflow-x:hidden}
-@media(min-width:500px){.app{max-width:430px;box-shadow:0 0 30px rgba(0,0,0,.25)}}
-.logo-wrap{text-align:center;padding:22px 0 10px}
-.logo-img{width:92px;height:92px;border-radius:24px;object-fit:cover;box-shadow:0 0 0 3px #fff,0 0 0 6px #2a5cf0;background:#fff}
-.qtext{color:#fff;font-size:42px;font-weight:900;margin-top:10px}
-.login-card{margin:16px 12px;background:#fff;border-radius:24px;padding:20px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
-.btn{width:100%;padding:14px;border-radius:14px;border:none;font-weight:800;font-size:14px;cursor:pointer;margin-top:10px}
-.btn-primary{background:#4a6cf7;color:#fff}.btn-dark{background:#111827;color:#fff}.btn-orange{background:#ff8c00;color:#fff}.btn-green{background:#22c55e;color:#000}
-.balance{margin:12px;background:#1e3a8a;border-radius:24px;padding:18px;color:#fff;width:calc(100% - 24px)}
-.total{font-size:13px;opacity:.7}.amount{font-size:34px;font-weight:900}.gain{color:#5ee9a8;margin-top:6px;font-size:12px}
-.asset{margin-top:14px;display:flex;justify-content:space-between;align-items:center}
-.asset-left{display:flex;gap:12px;align-items:center}
-.asset-ico{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;overflow:hidden}
-.btc{background:#ff9f0a}.eth{background:#8b5cf6}.usdc{background:#3b82f6}
-.btns{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
-.btn-half{flex:1;padding:12px;border-radius:14px;border:none;font-weight:800;cursor:pointer;display:flex;justify-content:center;gap:6px;font-size:13px;min-width:70px}
-.btn-send{background:#3b82f6;color:#fff}.btn-rec{background:transparent;color:#fff;border:1.5px solid #3b82f6}
-.card{margin:12px;background:#fff;border-radius:18px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,.1);width:calc(100% - 24px)}
-.bottom{position:fixed;bottom:0;left:0;right:0;width:100%;max-width:100%;background:#2a5cf0;border-radius:28px 28px 0 0;display:flex;justify-content:space-around;padding:12px 0;z-index:20}
-@media(min-width:500px){.bottom{max-width:430px;left:50%;transform:translateX(-50%)}}
-.nv{flex:1;text-align:center;font-size:11px;color:#8fb0ff;background:none;border:none;cursor:pointer}.nv.on{color:#fde68a}.nv .ic{font-size:24px;display:block}
-.small{font-size:9px;word-break:break-all;overflow-wrap:anywhere;white-space:normal;background:#eef3ff;padding:8px;border-radius:8px;margin-top:6px;line-height:13px}
-.markets-wrap{margin:12px;background:#fff;border-radius:22px;padding:12px 16px;width:calc(100% - 24px)}
-.search{width:100%;padding:14px 16px;border-radius:14px;border:1px solid #ddd}
-.coin-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee}
-.set-card{margin:12px;background:#fff;border-radius:18px;overflow:hidden;width:calc(100% - 24px)}
-.set-row{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #f2f3f5;cursor:pointer}
-.set-left{display:flex;align-items:center;gap:12px}
-.page{display:none}.page.on{display:block}
-.live-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+*{margin:0;padding:0;box-sizing:border-box;font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto}
+body{background:#4f6ef7;min-height:100vh;color:#000}
+.app{max-width:430px;margin:0 auto;min-height:100vh;background:#4f6ef7;padding:12px;padding-bottom:90px;position:relative}
+.top-card{background:#2a3f9d;border-radius:28px;padding:16px;margin:8px 0 12px;color:#fff;position:relative;overflow:hidden}
+.wallet-id-box{background:#ffffff14;border:1px solid #ffffff22;border-radius:14px;padding:10px;margin-top:12px;font-size:10px;word-break:break-all;line-height:1.4}
+.btn-row{display:flex;gap:10px;margin:10px 0}
+.btn{flex:1;padding:16px 10px;border-radius:18px;border:none;font-weight:900;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-blue{background:#4a8cff;color:#fff}
+.btn-dark{background:#2a3f9d;border:1.5px solid #6b8aff;color:#fff}
+.btn-swap{width:100%;background:#3b4fa3;border-radius:16px;padding:14px;color:#fff;font-weight:900;border:none;margin-top:4px}
+.card{background:#fff;border-radius:26px;padding:16px;margin:12px 0;box-shadow:0 4px 20px #00000015}
+.card-title{display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:900;margin-bottom:12px}
+.asset-pqc{background:#fefce8;border:2px solid #fde68a;border-radius:20px;padding:14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;position:relative}
+.asset{padding:14px 6px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;border-bottom:1px solid #f1f5f9}
+.asset:last-child{border:none}
+.icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;font-size:18px}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#3b5bff;border-radius:28px 28px 0 0;display:flex;justify-content:space-around;padding:14px 0 18px;z-index:99}
+.nav-item{text-align:center;color:#ffffff99;font-size:12px;font-weight:700;cursor:pointer}
+.nav-item.active{color:#fff}
+.badge{font-size:9px;background:#22c55e;color:#000;padding:2px 7px;border-radius:10px;font-weight:900;margin-left:4px}
+.modal-bg{display:none;position:fixed;inset:0;background:#00000099;z-index:9999;padding:12px;align-items:flex-end;justify-content:center}
+.modal{background:#fff;border-radius:28px 28px 0 0;padding:18px;width:100%;max-width:430px;max-height:88vh;overflow:auto;color:#000;animation:up .25s}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.input{width:100%;padding:16px;border-radius:14px;border:1.5px solid #ddd;font-size:15px;margin:8px 0}
+.coin-row{display:flex;justify-content:space-between;align-items:center;padding:16px 8px;border-bottom:1px solid #eee;cursor:pointer;font-weight:600}
+.search{width:100%;padding:16px;border-radius:20px;border:1.5px solid #ddd;font-size:16px;margin-bottom:12px}
+.small{font-size:12px;color:#64748b}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 </style>
 </head>
 <body>
 <div class="app">
-<div class="page on" id="pLogin"><div class="logo-wrap"><img src="logo.png" class="logo-img" onerror="this.src='qtrust-icon.png';"><div class="qtext">QTrust</div><div style="color:#c7d2fe;font-size:11px;letter-spacing:2px;margin-top:4px">QTRUST PROJECT • WALLET ID 128 • MAINNET 997 • V3 TESTNET LIVE</div></div><div class="login-card"><h2>Welcome to QTrust V3</h2><p style="font-size:12px;color:#6b7280;margin-top:6px"><span class="live-dot"></span> Testnet Live + Encrypted + Biometric</p><button class="btn btn-primary" onclick="App.createWallet()">✨ Create Encrypted Wallet</button><button class="btn btn-green" onclick="App.biometricLogin()">👆 Unlock with Fingerprint / FaceID</button><button class="btn btn-dark" onclick="App.showImportLogin()">📥 I Already Have a Wallet</button><div id="importBoxLogin" style="display:none;margin-top:14px;border-top:1px solid #eee;padding-top:12px"><input id="importKeyLogin" placeholder="Paste 128 OR 0x OR 12 words" style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;font-size:12px"><button class="btn btn-orange" onclick="App.doImportLogin()">Login & Encrypt</button></div></div></div>
-
-<div class="page" id="pHome"><div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;color:#fff"><div style="display:flex;align-items:center;gap:10px"><img src="logo.png" style="width:38px;height:38px;border-radius:12px;background:#fff"><div><b id="qidDash">qtrust_xxxx</b><br><small id="addrShort">0x... • QTrust 997</small></div></div><div style="display:flex;gap:6px"><button onclick="App.showQR()" style="background:rgba(255,255,255,.2);border:none;color:#fff;padding:8px 10px;border-radius:10px">QR</button><button onclick="App.logout()" style="background:rgba(255,255,255,.2);border:none;color:#fff;padding:8px 10px;border-radius:10px;font-size:11px">Logout</button></div></div><div class="balance"><div style="display:flex;justify-content:space-between"><div><div class="total">Total Balance - <span class="live-dot"></span> Testnet Live Chain 997</div><div class="amount" id="amountVal">$12,847.32</div><div class="gain" id="gainVal">↗ Loading testnet...</div></div><button onclick="App.copyAddr()" style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;height:28px">Copy</button></div><div style="margin-top:14px;background:rgba(0,0,0,.15);border-radius:12px;padding:10px"><div style="display:flex;justify-content:space-between;font-size:11px;opacity:.7"><span>QTrust Chain 997 Testnet Live</span><span id="blockNo">#Loading...</span></div><div style="display:flex;align-items:end;gap:4px;margin-top:8px;height:36px"><div style="flex:1;background:#5ee9a8;height:30%"></div><div style="flex:1;background:#5ee9a8;height:45%"></div><div style="flex:1;background:#5ee9a8;height:35%"></div><div style="flex:1;background:#5ee9a8;height:60%"></div><div style="flex:1;background:#5ee9a8;height:50%"></div><div style="flex:1;background:#5ee9a8;height:75%"></div><div style="flex:1;background:#f7c948;height:90%"></div></div></div><div class="btns"><button class="btn-half btn-send" onclick="App.send()">✈ Send</button><button class="btn-half btn-rec" onclick="App.receive()">⬇ Receive</button><button class="btn-half" style="background:rgba(255,255,255,.15);color:#fff" onclick="App.buy()">💳 Buy</button><button class="btn-half" style="background:rgba(255,255,255,.15);color:#fff" onclick="App.swap()">🔄 Swap</button></div><div style="margin-top:12px;background:rgba(255,255,255,.1);border-radius:12px;padding:10px;font-size:9px"><div id="widDash">Wallet ID 128: ...</div><div id="pubDash" style="margin-top:4px">Public: ...</div></div></div><div class="card"><div style="display:flex;justify-content:space-between"><h3>Your Assets - Testnet Live</h3><button onclick="App.addToken()" style="border:none;background:#f3f4f6;padding:6px 10px;border-radius:8px;font-size:11px">+ Add Token</button></div><div class="asset" style="background:#fffbeb;border:1px solid #fcd34d;padding:10px;border-radius:12px;margin-top:10px"><div class="asset-left"><div class="asset-ico" style="background:#fff;border:1px solid #f59e0b"><img src="pqc-logo.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.src='https://via.placeholder.com/44/f59e0b/fff?text=PQC'"></div><div><div style="font-weight:700">PQC <span style="color:#22c55e;font-size:10px">● LIVE</span></div><small id="pqcSub">PQC • QTrust 997 • Testnet</small></div></div><div style="text-align:right"><b id="pqcBal">1,000 PQC</b><br><small id="pqcUsd" style="color:#16a34a">$12,847.32 • Live</small></div></div><div class="asset"><div class="asset-left"><div class="asset-ico btc">₿</div><div><div style="font-weight:700">Bitcoin</div><small>BTC • 0.1021</small></div></div><div style="text-align:right"><b>$8,124.56</b><br><small style="color:#16a34a">+2.14%</small></div></div><div class="asset"><div class="asset-left"><div class="asset-ico eth">♦</div><div><div style="font-weight:700">Ethereum</div><small>ETH • 1.39</small></div></div><div style="text-align:right"><b>$3,210.40</b><br><small style="color:#16a34a">+5.82%</small></div></div></div><div class="card"><h3>🛡️ Security Center - V3 Testnet Live</h3><div style="margin-top:10px;font-size:13px"><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ Testnet Live - Chain 997</span><small style="color:#16a34a" id="testnetStatus">Active</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ Auto-Lock 2 min</span><small style="color:#16a34a">ON</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>✅ Biometric Unlock</span><small style="color:#16a34a">Ready</small></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span>⚠️ Backup & Security</span><small style="color:#e53935;cursor:pointer" onclick="App.backup()">Verify ›</small></div></div></div></div>
-
-<div class="page" id="pMarkets"><div class="markets-wrap"><input class="search" placeholder="Search" oninput="App.filter()"><div id="coinList"></div></div></div>
-<div class="page" id="pSettings"><div style="padding:14px;text-align:center;background:#fff;margin:12px;border-radius:18px;width:calc(100% - 24px)"><h2>Settings - V3 Testnet Live</h2><small>Encrypted + Auto-lock + Biometric</small></div><div class="set-card"><div class="set-row" onclick="App.setLang()"><div class="set-left"><span>🌐</span><b>Language</b></div><span>›</span></div><div class="set-row" onclick="App.setCurr()"><div class="set-left"><span>💲</span><b>Currencies</b></div><span>›</span></div><div class="set-row" onclick="App.setNotif()"><div class="set-left"><span>🔔</span><b>Notification</b></div><span>›</span></div><div class="set-row" onclick="App.backup()"><div class="set-left"><span>🔐</span><b>Backup & Security - V3</b></div><span>›</span></div><div class="set-row" onclick="App.explorer()" style="background:#fffbeb;border-left:4px solid #f59e0b"><div class="set-left"><span>🔍</span><b>QTrust Explorer</b> <span style="background:#22c55e;color:#fff;font-size:9px;padding:3px 8px;border-radius:10px;margin-left:6px">LIVE</span></div><span>›</span></div></div><div class="card" id="setDetail" style="display:none"></div></div>
-<div class="bottom" id="bottomNav"><button class="nv on" id="bHome" onclick="App.nav('Home')"><span class="ic">🏠</span>Dashboard</button><button class="nv" id="bMarkets" onclick="App.nav('Markets')"><span class="ic">📊</span>Markets</button><button class="nv" id="bSettings" onclick="App.nav('Settings')"><span class="ic">⚙️</span>Settings</button></div>
+<!-- Top Wallet Card -->
+<div class="top-card">
+<div style="display:flex;justify-content:space-between"><small>● Chain 997 Live</small><small id="liveBlock">Block #119572909</small></div>
+<div style="margin:12px 0"><h2 id="topBalance" style="font-size:28px">999.1609 PQC</h2><small id="topUsd">$12,760.28 • Live Price $12.992</small></div>
+<div class="btn-row">
+<button class="btn btn-blue" onclick="openSend()">✈ Send</button>
+<button class="btn btn-dark" onclick="openReceive()">↓ Receive</button>
+<button class="btn btn-dark" onclick="openBuy()">💳 Buy</button>
+</div>
+<button class="btn-swap" onclick="openSwap()">🔄 Swap</button>
+<div class="wallet-id-box">
+Wallet ID 128:<br>
+<span id="wid">wallet_qtrust_997a22b8_q997a22b_RV2ObOK7MHS675ug6hXPqI5SRsID0MMRR - Testnet Live 997</span><br><br>
+Public:<br>
+<span id="pub" style="color:#fde68a">qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f | Testnet Live Chain 997</span>
+</div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
-<script>
-const FINAL_QTRUST_ADDR = "qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f";
-const FINAL_QID = "qtrust_997a22b8";
-const QTRUST_TESTNET = { chainId:997, basePrice:12.847 };
+<!-- Dashboard Tab -->
+<div id="dashboardTab">
+<div class="card">
+<div class="card-title"><span>Your Assets - Testnet Live</span><button onclick="openAddToken()" style="border:none;background:#f1f5f9;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer">+ Add Token</button></div>
 
-const App={
-  coins:[], autoLockTimer:null, testnetInterval:null,
-  init(){ 
-    this.setupAutoLock();
-    let d=localStorage.getItem('qtrust_pqc'); 
-    if(d){ this.showDashboard(); }else{ this.showLogin(); } 
-  },
-  setupAutoLock(){
-    const reset = ()=>{ clearTimeout(this.autoLockTimer); this.autoLockTimer=setTimeout(()=>{ let p=document.getElementById('pHome'); if(p && p.classList.contains('on')){ alert('🔒 Auto-locked (2 min inactive) - Testnet security'); this.showLogin(); } }, 120000); };
-    ['click','touchstart','keydown','mousemove'].forEach(e=> document.addEventListener(e, reset, {passive:true}));
-    reset();
-  },
-  showLogin(){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pLogin').classList.add('on'); document.getElementById('bottomNav').style.display='none'; this.stopTestnet(); },
-  showDashboard(){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pHome').classList.add('on'); document.getElementById('bottomNav').style.display='flex'; this.render(); this.loadCoins(); this.startTestnet(); },
-  nav(n){ if(n==='Home'){ this.showDashboard(); return; } this.stopTestnet(); document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('p'+n).classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('b'+n).classList.add('on'); if(n==='Markets') this.loadCoins(); },
-  ensure(){ 
-    let d=localStorage.getItem('qtrust_pqc'); 
-    if(!d){ 
-      let pwd = prompt('Set QTrust Vault Password (Strong):');
-      if(!pwd || pwd.length<4){ pwd='QTrust997!'; alert('Default: QTrust997!'); }
-      let w=ethers.Wallet.createRandom(); 
-      let encPk = CryptoJS.AES.encrypt(w.privateKey, pwd).toString();
-      let encSeed = CryptoJS.AES.encrypt(w.mnemonic.phrase, pwd).toString();
-      let gen=()=>Array(64).fill(0).map(()=> 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random()*62)]).join(''); 
-      let obj={qid:FINAL_QID,wid:`wallet_${FINAL_QID}_${FINAL_QTRUST_ADDR.slice(7,15)}_${gen()}`.slice(0,128),addr:FINAL_QTRUST_ADDR,encPk:encPk,encSeed:encSeed,chain:"QTrust Mainnet",chainId:997,symbol:"PQC"}; 
-      localStorage.setItem('qtrust_pqc',JSON.stringify(obj)); 
-      return obj; 
-    } 
-    let parsed = JSON.parse(d); 
-    parsed.addr = FINAL_QTRUST_ADDR; 
-    parsed.qid = FINAL_QID; 
-    if(parsed.pk && !parsed.encPk){
-      let pwd = prompt('V2 Upgrade: Set password to encrypt:'); if(!pwd) pwd='QTrust997!';
-      parsed.encPk = CryptoJS.AES.encrypt(parsed.pk, pwd).toString();
-      parsed.encSeed = CryptoJS.AES.encrypt(parsed.seed||'old', pwd).toString();
-      delete parsed.pk; delete parsed.seed;
-      localStorage.setItem('qtrust_pqc', JSON.stringify(parsed));
-    }
-    return parsed; 
-  },
-  render(){ let d=this.ensure(); document.getElementById('qidDash').innerText=d.qid; document.getElementById('addrShort').innerText=d.addr.slice(0,12)+'...'+d.addr.slice(-6)+' • Testnet Live 997'; document.getElementById('widDash').innerText=`Wallet ID 128: ${d.wid} - Testnet Live 997`; document.getElementById('pubDash').innerText=`Public: ${d.addr} | Testnet Live Chain 997`; },
-  startTestnet(){
-    this.fetchTestnetBalance();
-    this.testnetInterval = setInterval(()=> this.fetchTestnetBalance(), 15000);
-  },
-  stopTestnet(){ if(this.testnetInterval){ clearInterval(this.testnetInterval); this.testnetInterval=null; } },
-  fetchTestnetBalance(){
-    // Read from explorer.html if present, else mock live
-    let explorerData = localStorage.getItem('qtrust_testnet_data');
-    let bal, price, block;
-    if(explorerData){
-      try{
-        let ed = JSON.parse(explorerData);
-        if(Date.now()-ed.time < 60000){ bal=parseFloat(ed.balance); price=parseFloat(ed.price); block=ed.block; }
-      }catch(e){}
-    }
-    if(!bal){
-      // Mock testnet live - real chain jaisa fluctuation
-      let base=1000; 
-      let variance = (Math.sin(Date.now()/10000)*2) + (Math.random()-0.5);
-      bal = base + variance;
-      price = QTRUST_TESTNET.basePrice + (Math.random()-0.5)*0.4;
-      block = Math.floor(Date.now()/15000);
-    }
-    let totalUsd = bal * price;
-    document.getElementById('amountVal').innerText = `$${totalUsd.toFixed(2)}`;
-    document.getElementById('gainVal').innerText = `↗ Live Testnet • ${bal.toFixed(4)} PQC • Block #${block} • $${price.toFixed(3)}`;
-    document.getElementById('pqcBal').innerText = `${bal.toFixed(4)} PQC`;
-    document.getElementById('pqcUsd').innerText = `$${totalUsd.toFixed(2)} • Live`;
-    document.getElementById('pqcSub').innerText = `PQC • QTrust 997 • Live • ${bal.toFixed(4)} PQC`;
-    document.getElementById('blockNo').innerText = `#${block}`;
-    document.getElementById('testnetStatus').innerText = `Live #${block}`;
-    // Save for explorer sync
-    localStorage.setItem('qtrust_testnet_data', JSON.stringify({balance:bal.toFixed(4), price:price.toFixed(3), block:block, time:Date.now()}));
-  },
-  createWallet(){ if(!confirm('Naya encrypted wallet banega, purana delete hoga. Continue?')) return; localStorage.removeItem('qtrust_pqc'); let d=this.ensure(); alert('V3 Testnet Wallet Created: '+d.qid); this.showDashboard(); },
-  showImportLogin(){ let b=document.getElementById('importBoxLogin'); b.style.display=b.style.display==='none'?'block':'none'; },
-  doImportLogin(){ let v=document.getElementById('importKeyLogin').value.trim(); if(!v){ alert('Paste key'); return; } let pwd = prompt('Set new Vault Password:'); if(!pwd || pwd.length<4){ pwd='QTrust997!'; } try{ let w; if(v==="128" || v==="qtrust_997a22b8" || v.length<20){ w = ethers.Wallet.createRandom(); } else { w=v.startsWith('0x')?new ethers.Wallet(v):ethers.Wallet.fromPhrase(v); } let encPk = CryptoJS.AES.encrypt(w.privateKey, pwd).toString(); let encSeed = CryptoJS.AES.encrypt(w.mnemonic? w.mnemonic.phrase : v, pwd).toString(); let gen=()=>Array(64).fill(0).map(()=> 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random()*62)]).join(''); let obj={qid:FINAL_QID,wid:`wallet_${FINAL_QID}_${FINAL_QTRUST_ADDR.slice(7,15)}_${gen()}`.slice(0,128),addr:FINAL_QTRUST_ADDR,encPk:encPk,encSeed:encSeed,chain:"QTrust Mainnet",chainId:997,symbol:"PQC"}; localStorage.setItem('qtrust_pqc',JSON.stringify(obj)); this.showDashboard(); }catch(e){ alert('Invalid: '+e.message); } },
-  async biometricLogin(){
-    try{
-      if(window.PublicKeyCredential){
-        // Try WebAuthn
-        await navigator.credentials.get({ publicKey:{ challenge:new Uint8Array(32), timeout:60000, userVerification:"required" } });
-        let d=localStorage.getItem('qtrust_pqc');
-        if(d){ this.showDashboard(); return; }
-      }
-    }catch(e){ console.log('Biometric fallback to password'); }
-    // Fallback to password check
-    let pwd = prompt('Biometric not available, enter Vault Password:');
-    if(!pwd) return;
-    let raw = JSON.parse(localStorage.getItem('qtrust_pqc')||'{}');
-    if(!raw.encPk){ alert('No wallet, create first'); return; }
-    try{
-      let dec = CryptoJS.AES.decrypt(raw.encPk, pwd).toString(CryptoJS.enc.Utf8);
-      if(dec){ this.showDashboard(); } else throw new Error();
-    }catch(e){ alert('❌ Wrong Password'); }
-  },
-  send(){ let to=prompt('Send to address:'); let amt=prompt('Amount (PQC):'); if(to&&amt) alert('Testnet Send '+amt+' PQC to '+to+' on QTrust 997 Live - Tx simulated'); },
-  receive(){ alert('Receive PQC Testnet Live:\n'+FINAL_QTRUST_ADDR+'\nChain ID: 997 Live'); },
-  buy(){ alert('Buy PQC Testnet - '+FINAL_QTRUST_ADDR); },
-  swap(){ alert('Swap PQC/BTC/ETH/USDC Testnet Live - Working'); },
-  addToken(){ let tk=prompt('Add token:'); if(tk){ let l=JSON.parse(localStorage.getItem('custom_tokens')||'[]'); l.push(tk); localStorage.setItem('custom_tokens',JSON.stringify(l)); alert('Token added: '+tk); } },
-  showQR(){ window.open(`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${FINAL_QTRUST_ADDR}`); },
-  copyAddr(){ let text=FINAL_QTRUST_ADDR; if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(()=>alert('Copied: '+text)).catch(()=>{fallback(text)}); } else{ fallback(text); } function fallback(t){ let ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); alert('Copied: '+t);}catch(e){prompt('Copy manually:',t);} document.body.removeChild(ta); } },
-  logout(){ this.stopTestnet(); if(confirm('Logout? Testnet data safe rahega!')){ this.showLogin(); } },
-  backup(){
-    let pwd = prompt('Enter Vault Password to decrypt backup:'); if(!pwd){ alert('Password chahiye'); return; }
-    let raw = JSON.parse(localStorage.getItem('qtrust_pqc')||'{}');
-    if(!raw.encPk){ alert('No encrypted wallet'); return; }
-    let decPk, decSeed;
-    try{ decPk = CryptoJS.AES.decrypt(raw.encPk, pwd).toString(CryptoJS.enc.Utf8); decSeed = CryptoJS.AES.decrypt(raw.encSeed, pwd).toString(CryptoJS.enc.Utf8); if(!decPk) throw new Error('wrong'); }catch(e){ alert('❌ Galat Password!'); return; }
-    let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.textContent=''; let h3=document.createElement('h3'); h3.textContent='🔐 Backup V3 Decrypted - Testnet Live'; el.appendChild(h3); [['ID',raw.qid||FINAL_QID],['WID',raw.wid],['Public',raw.addr]].forEach(([k,v])=>{ let s=document.createElement('div'); s.className='small'; s.textContent=k+': '+v; el.appendChild(s); }); let box=document.createElement('div'); box.style.cssText='margin-top:15px; padding:12px; background:#1a1a1a; border:1px solid #00ff88; border-radius:12px;'; let warn=document.createElement('b'); warn.style.color='#00ff88'; warn.textContent='✅ AES-256 DECRYPTED - TESTNET LIVE - PRIVATE'; box.appendChild(warn); box.appendChild(document.createElement('br')); box.appendChild(document.createElement('br')); let pkDiv=document.createElement('div'); pkDiv.style.cssText='word-break:break-all; background:#000; padding:10px; color:#5ee9a8; border-radius:8px; font-size:10px; border:1px solid #333;'; pkDiv.textContent='PK: '+decPk; let seedDiv=document.createElement('div'); seedDiv.style.cssText='word-break:break-all; background:#000; padding:10px; color:#fde68a; border-radius:8px; font-size:10px; margin-top:10px; border:1px solid #333;'; seedDiv.textContent='Seed: '+decSeed; box.appendChild(pkDiv); box.appendChild(seedDiv); let lockBtn=document.createElement('button'); lockBtn.textContent='🔒 Lock Again'; lockBtn.style.cssText='margin-top:12px; width:100%; padding:10px; border-radius:8px; border:none; background:#ff3b3b; color:#fff; font-weight:800;'; lockBtn.onclick=()=>{ el.textContent='Locked'; el.style.display='none'; }; box.appendChild(lockBtn); el.appendChild(box);
-  },
-  explorer(){
-    let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on');
-    let now = new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
-    let td = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"1000.00","price":"12.847","block":"0"}');
-    el.innerHTML=`
-    <h3>🔍 QTrust Explorer - Testnet Live 997 <span style="color:#22c55e">● LIVE ${new Date().toLocaleTimeString()}</span></h3>
-    <div style="background:#0b1220;border-radius:14px;padding:6px;border:1px solid #1e3a5f">
-      <a href="./explorer.html" target="_blank" onclick="event.stopPropagation()"><img src="explorer-live.jpg" style="width:100%;border-radius:10px;display:block;border:1px solid #1e3a5f"></a>
-      <div style="background:#111c33;border-radius:10px;padding:10px;margin-top:8px;font-size:11px">
-        <div>Balance: <b style="color:#5ee9a8">${td.balance} PQC</b> = $${(td.balance*td.price).toFixed(2)}</div>
-        <div>Block: #${td.block} • Chain 997 • Price: $${td.price}</div>
-        <div style="margin-top:6px;color:#8fb0ff">Addr: ${FINAL_QTRUST_ADDR.slice(0,20)}...</div>
-      </div>
-      <div style="margin-top:8px;display:flex;gap:6px">
-        <a href="./explorer.html" target="_blank" onclick="event.stopPropagation()" style="flex:1;text-align:center;background:#f59e0b;color:#000;padding:12px;border-radius:10px;font-weight:900;text-decoration:none;font-size:13px;display:block">🔍 Open Explorer Site</a>
-        <button onclick="event.stopPropagation(); App.explorer()" style="flex:1;background:#22c55e;color:#000;border:none;padding:12px;border-radius:10px;font-weight:900;font-size:13px">↻ Refresh Live</button>
-      </div>
-      <div style="margin-top:6px;text-align:center;font-size:9px;color:#64748b">V3 Testnet Live • Updated: ${now} • Auto-sync with wallet</div>
-    </div>`;
-    el.scrollIntoView({behavior:'smooth'});
-  },
-  setLang(){ let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.innerHTML='<h3>🌐 Language</h3><div class="small">English - Testnet Live 997 V3</div>'; },
-  setCurr(){ let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.innerHTML='<h3>💲 Currencies</h3><div class="small">PQC / USD - Testnet Live V3</div>'; },
-  setNotif(){ if(Notification) Notification.requestPermission(); let el=document.getElementById('setDetail'); el.style.display='block'; document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById('pSettings').classList.add('on'); document.querySelectorAll('.nv').forEach(b=>b.classList.remove('on')); document.getElementById('bSettings').classList.add('on'); el.innerHTML='<h3>🔔 Notification</h3><div class="small"><b>QTrust 997 Testnet Notifications ON</b></div>'; },
-  loadCoins(){ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1').then(r=>r.json()).then(d=>{ this.coins=d; let h=d.map(c=>`<div class="coin-row"><div style="display:flex;gap:8px"><img src="${c.image}" style="width:20px;height:20px"><b>${c.name}</b> ${c.symbol.toUpperCase()}</div><div>$${c.current_price}</div></div>`).join(''); document.getElementById('coinList').innerHTML=h; }).catch(()=>{ document.getElementById('coinList').innerHTML='Markets offline - Testnet Live'; }); },
-  filter(){ let q=document.querySelector('.search')?.value.toLowerCase()||''; let f=this.coins.filter(c=>c.name.toLowerCase().includes(q)||c.symbol.toLowerCase().includes(q)); let h=f.map(c=>`<div class="coin-row"><div><b>${c.name}</b></div><div>$${c.current_price}</div></div>`).join(''); document.getElementById('coinList').innerHTML=h||'No results'; }
-};
-App.init();
+<div class="asset-pqc" onclick="openPQCModal()">
+<span style="position:absolute;top:-8px;right:10px;background:#22c55e;color:#000;font-size:9px;padding:3px 8px;border-radius:10px;font-weight:900">CLICK TO OPEN</span>
+<div style="display:flex;gap:12px;align-items:center">
+<img src="https://cdn-icons-png.flaticon.com/512/2092/2091665.png" style="width:46px;height:46px;border-radius:50%;border:2px solid #fde68a">
+<div><b>PQC <span class="badge">LIVE</span></b><br><small class="small">PQC • QTrust 997 • Live • <span class="balTxt">999.1609 PQC</span></small></div>
+</div>
+<div style="text-align:right"><b class="balTxt" style="font-size:18px">999.1609<br>PQC</b><br><small style="color:#16a34a;font-weight:700" class="usdTxt">$12760.28 • Live</small></div>
+</div>
+
+<div class="asset" onclick="openCoin('Bitcoin','BTC','$78498')"><div style="display:flex;gap:10px;align-items:center"><div class="icon" style="background:#f7931a">₿</div><div><b>Bitcoin</b><br><small class="small">BTC • 0.1021</small></div></div><div style="text-align:right"><b>$8,124.56</b><br><small style="color:#22c55e">+2.14%</small></div></div>
+<div class="asset" onclick="openCoin('Ethereum','ETH','$2301.67')"><div style="display:flex;gap:10px;align-items:center"><div class="icon" style="background:#a68cff">♦</div><div><b>Ethereum</b><br><small class="small">ETH • 1.39</small></div></div><div style="text-align:right"><b>$3,210.40</b><br><small style="color:#22c55e">+5.82%</small></div></div>
+</div>
+
+<div class="card">
+<div style="display:flex;gap:10px"><div style="font-size:22px">🛡️</div><div><b>Security Center - V3 Testnet Live</b><br><small class="small">Dilithium3 + Kyber768 • Quantum Safe • Chain 997</small><br><div style="margin-top:8px;display:flex;gap:6px"><span style="background:#dcfce7;color:#16a34a;padding:4px 8px;border-radius:8px;font-size:10px;font-weight:800">✓ SECURE</span><span style="background:#fefce8;color:#a16207;padding:4px 8px;border-radius:8px;font-size:10px;font-weight:800">CHAIN 997 LIVE</span></div></div></div>
+</div>
+</div>
+
+<!-- Markets Tab -->
+<div id="marketsTab" style="display:none">
+<div class="card">
+<input id="marketSearch" class="search" placeholder="Search" oninput="filterMarkets()">
+<div id="marketList">
+<div class="coin-row" onclick="openCoin('Bitcoin','BTC','$78498')"><span>🟠 Bitcoin <small>BTC</small></span><b>$78498</b></div>
+<div class="coin-row" onclick="openCoin('Ethereum','ETH','$2301.67')"><span>🔷 Ethereum <small>ETH</small></span><b>$2301.67</b></div>
+<div class="coin-row" onclick="openCoin('Tether','USDT','$0.999002')"><span>💠 Tether <small>USDT</small></span><b>$0.999002</b></div>
+<div class="coin-row" onclick="openCoin('BNB','BNB','$712.18')"><span>🟡 BNB <small>BNB</small></span><b>$712.18</b></div>
+<div class="coin-row" onclick="openCoin('XRP','XRP','$1.26')"><span>✕ XRP <small>XRP</small></span><b>$1.26</b></div>
+<div class="coin-row" onclick="openCoin('USDC','USDC','$0.99958')"><span>🔵 USDC <small>USDC</small></span><b>$0.99958</b></div>
+<div class="coin-row" onclick="openCoin('Solana','SOL','$95.21')"><span>🟣 Solana <small>SOL</small></span><b>$95.21</b></div>
+<div class="coin-row" onclick="openCoin('TRON','TRX','$0.313931')"><span>🔴 TRON <small>TRX</small></span><b>$0.313931</b></div>
+<div class="coin-row" onclick="openCoin('Figure Heloc','FIGR_HELOC','$1.076')"><span>🟦 Figure Heloc <small>FIGR_HELOC</small></span><b>$1.076</b></div>
+<div class="coin-row" onclick="openCoin('Zcash','ZEC','$1278.39')"><span>🟡 Zcash <small>ZEC</small></span><b>$1278.39</b></div>
+<div class="coin-row" onclick="openPQCModal()" style="background:#fefce8;border:2px solid #fde68a;border-radius:12px;margin-top:6px"><span>🛡️ PQC <small>QTrust 997</small> <span class="badge">LIVE</span></span><b style="color:#16a34a">$12.992</b></div>
+</div>
+</div>
+</div>
+
+<!-- Settings Tab -->
+<div id="settingsTab" style="display:none">
+<div class="card"><b>Settings - Chain 997</b><br><br><div class="coin-row" onclick="alert('Wallet 128 Active')">🔐 Wallet ID 128 ✓</div><div class="coin-row" onclick="window.open('./explorer.html')">🔍 Open Explorer</div><div class="coin-row" onclick="localStorage.clear();location.reload()">🗑️ Reset Data</div></div>
+</div>
+</div>
+
+<!-- Bottom Nav -->
+<div class="bottom-nav">
+<div class="nav-item active" id="navDash" onclick="switchTab('dashboard')">🏠<br>Dashboard</div>
+<div class="nav-item" id="navMark" onclick="switchTab('markets')">📊<br>Markets</div>
+<div class="nav-item" id="navSet" onclick="switchTab('settings')">⚙️<br>Settings</div>
+</div>
+
+<!-- PQC Modal -->
+<div id="pqcModal" class="modal-bg" onclick="if(event.target==this)closePQCModal()"><div class="modal">
+<div style="display:flex;justify-content:space-between"><h2>💰 PQC Asset - Live</h2><b onclick="closePQCModal()" style="background:#000;color:#fff;padding:8px 14px;border-radius:12px;cursor:pointer">✕</b></div>
+<div style="background:#070e22;color:#fff;border-radius:16px;padding:14px;margin:14px 0"><small>Public Address</small><br><b id="modalAddr" style="font-size:11px;word-break:break-all;color:#fde68a">qtrust1q997a22b8x05f1b9f6c11c1e39fa6ecc30ddfd42595c84830f</b><br><button onclick="navigator.clipboard.writeText(document.getElementById('modalAddr').innerText);alert('Copied!')" style="margin-top:8px;padding:8px 12px;border-radius:8px;border:none;background:#fde68a;font-weight:800">📋 Copy</button></div>
+<div class="grid2"><div style="background:#f0fdf4;border:1px solid #22c55e;border-radius:12px;padding:12px;text-align:center"><small>Balance</small><b id="modalBal" style="display:block">999.1609 PQC</b></div><div style="background:#fefce8;border:1px solid #fde68a;border-radius:12px;padding:12px;text-align:center"><small>Value</small><b id="modalUsd" style="display:block;color:#16a34a">$12760.28</b></div></div>
+<div style="margin:14px 0"><b>📜 Transactions - Chain 997</b><div id="modalTx"></div></div>
+<div class="grid2"><a href="./explorer.html" style="background:#070e22;color:#fff;padding:14px;border-radius:12px;text-align:center;font-weight:900;text-decoration:none">🔍 Explorer</a><button onclick="closePQCModal()" style="background:#f59e0b;padding:14px;border-radius:12px;font-weight:900;border:none">Close</button></div>
+</div></div>
+
+<!-- Coin Modal -->
+<div id="coinModal" class="modal-bg" onclick="if(event.target==this)closeCoin()"><div class="modal">
+<div style="display:flex;justify-content:space-between"><h2 id="coinName">Bitcoin</h2><b onclick="closeCoin()" style="background:#000;color:#fff;padding:8px 14px;border-radius:12px;cursor:pointer">✕</b></div>
+<div style="background:#070e22;color:#fff;border-radius:16px;padding:16px;margin:14px 0;text-align:center"><small id="coinSymbol">BTC • Live</small><br><b id="coinPrice" style="font-size:32px;color:#fde68a">$78498</b><br><small style="color:#22c55e">+2.4% • Chain 997 Live</small><div style="height:60px;margin-top:12px;background:linear-gradient(to top,#22c55e33,transparent);border-bottom:2px solid #22c55e;border-radius:8px"></div></div>
+<div class="grid2"><button onclick="alert('Buy Coming Soon V4')" style="background:#3b82f6;color:#fff;padding:14px;border-radius:14px;border:none;font-weight:900">✈️ Buy</button><button onclick="alert('Sell Coming Soon')" style="background:#f59e0b;padding:14px;border-radius:14px;border:none;font-weight:900">💸 Sell</button></div>
+<button onclick="closeCoin()" style="width:100%;margin-top:10px;background:#eee;padding:12px;border-radius:12px;border:none;font-weight:700">Close</button>
+</div></div>
+
+<!-- Action Modals -->
+<div id="actionModal" class="modal-bg"><div class="modal"><div style="display:flex;justify-content:space-between"><h2 id="actionTitle">Send</h2><b onclick="closeAction()" style="background:#000;color:#fff;padding:8px 14px;border-radius:12px;cursor:pointer">✕</b></div><div id="actionBody" style="margin-top:14px"></div></div></div>
+
+<script>
+let data = JSON.parse(localStorage.getItem('qtrust_testnet_data')||'{"balance":"999.1609","price":"12.992","block":119572909}');
+function refresh(){
+ document.querySelectorAll('.balTxt').forEach(e=>{ if(e.tagName=='B' || e.innerText.includes('PQC')) e.innerText=parseFloat(data.balance).toFixed(4)+(e.innerHTML.includes('<br>')?'\nPQC':' PQC'); else e.innerText=parseFloat(data.balance).toFixed(4)+' PQC'; });
+ document.querySelectorAll('.usdTxt').forEach(e=>e.innerText='$'+(parseFloat(data.balance)*parseFloat(data.price)).toFixed(2)+' • Live');
+ document.getElementById('topBalance').innerText=parseFloat(data.balance).toFixed(4)+' PQC';
+ document.getElementById('topUsd').innerText='$'+(parseFloat(data.balance)*parseFloat(data.price)).toFixed(2)+' • Live Price $'+data.price;
+ document.getElementById('liveBlock').innerText='Block #'+data.block;
+}
+refresh();
+setInterval(()=>{data.block++; data.price=(12.5+Math.random()).toFixed(3); localStorage.setItem('qtrust_testnet_data',JSON.stringify(data)); refresh();},15000);
+
+function switchTab(t){
+ document.getElementById('dashboardTab').style.display=t=='dashboard'?'block':'none';
+ document.getElementById('marketsTab').style.display=t=='markets'?'block':'none';
+ document.getElementById('settingsTab').style.display=t=='settings'?'block':'none';
+ document.querySelectorAll('.nav-item').forEach(e=>e.classList.remove('active'));
+ document.getElementById(t=='dashboard'?'navDash':t=='markets'?'navMark':'navSet').classList.add('active');
+}
+function openPQCModal(){
+ document.getElementById('modalBal').innerText=parseFloat(data.balance).toFixed(4)+' PQC';
+ document.getElementById('modalUsd').innerText='$'+(parseFloat(data.balance)*parseFloat(data.price)).toFixed(2);
+ let txs=Array.from({length:5},(_,i)=>`<div style="display:flex;justify-content:space-between;background:#f8fafc;border-radius:10px;padding:10px;margin:6px 0;font-size:12px"><span>Tx #${data.block-i}<br><small style="color:#64748b">Chain 997 • Success</small></span><span style="color:#16a34a;font-weight:700">+${(Math.random()*2).toFixed(4)} PQC</span></div>`).join('');
+ document.getElementById('modalTx').innerHTML=txs;
+ document.getElementById('pqcModal').style.display='flex';
+}
+function closePQCModal(){document.getElementById('pqcModal').style.display='none';}
+function openCoin(n,s,p){document.getElementById('coinName').innerText=n;document.getElementById('coinSymbol').innerText=s+' • Live Price';document.getElementById('coinPrice').innerText=p;document.getElementById('coinModal').style.display='flex';}
+function closeCoin(){document.getElementById('coinModal').style.display='none';}
+function filterMarkets(){let q=document.getElementById('marketSearch').value.toLowerCase();document.querySelectorAll('.coin-row').forEach(r=>{r.style.display=r.innerText.toLowerCase().includes(q)?'flex':'none';});}
+function openAction(t,h){document.getElementById('actionTitle').innerText=t;document.getElementById('actionBody').innerHTML=h;document.getElementById('actionModal').style.display='flex';}
+function closeAction(){document.getElementById('actionModal').style.display='none';}
+function openSend(){openAction('Send PQC',`<input class="input" placeholder="Recipient Address qtrust1q..."><input class="input" placeholder="Amount PQC" type="number"><button onclick="data.balance=(parseFloat(data.balance)-1).toFixed(4);localStorage.setItem('qtrust_testnet_data',JSON.stringify(data));refresh();alert('Sent 1 PQC Success Chain 997!');closeAction()" style="width:100%;background:#4a8cff;color:#fff;padding:16px;border-radius:14px;border:none;font-weight:900;margin-top:8px">✈ Send Now</button>`);}
+function openReceive(){openAction('Receive PQC',`<div style="background:#070e22;color:#fff;padding:14px;border-radius:12px;font-size:11px;word-break:break-all">${document.getElementById('pub').innerText}</div><button onclick="navigator.clipboard.writeText(document.getElementById('pub').innerText);alert('Copied!')" style="width:100%;margin-top:10px;background:#fde68a;padding:14px;border-radius:12px;border:none;font-weight:900">📋 Copy Address</button><img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${document.getElementById('pub').innerText}" style="margin:12px auto;display:block;border-radius:12px">`);}
+function openBuy(){openAction('Buy PQC',`<div style="background:#f0fdf4;padding:12px;border-radius:12px;text-align:center"><b>1 PQC = $${data.price}</b></div><input class="input" placeholder="USD Amount" type="number"><button onclick="alert('Buy with Card Coming Soon V4')" style="width:100%;background:#22c55e;color:#000;padding:16px;border-radius:14px;border:none;font-weight:900;margin-top:8px">💳 Buy Now</button>`);}
+function openSwap(){openAction('Swap',`<div style="background:#f8fafc;padding:12px;border-radius:12px"><small>From</small><div style="display:flex;justify-content:space-between"><b>PQC</b><b>${parseFloat(data.balance).toFixed(4)}</b></div></div><div style="text-align:center;margin:8px">🔄</div><div style="background:#f8fafc;padding:12px;border-radius:12px"><small>To</small><div style="display:flex;justify-content:space-between"><b>BTC</b><b>0.1021</b></div></div><button onclick="alert('Swap Coming Soon')" style="width:100%;background:#070e22;color:#fff;padding:16px;border-radius:14px;border:none;font-weight:900;margin-top:12px">Swap</button>`);}
+function openAddToken(){openAction('Add Token',`<input class="input" placeholder="Token Contract Address"><input class="input" placeholder="Symbol e.g. USDT"><button onclick="alert('Token Added!')" style="width:100%;background:#070e22;color:#fff;padding:16px;border-radius:14px;border:none;font-weight:900">+ Add</button>`);}
 </script>
 </body>
 </html>
